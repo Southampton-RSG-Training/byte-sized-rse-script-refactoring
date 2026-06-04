@@ -5,7 +5,7 @@
 # ensuring that the author list and other fields remain accurate.
 
 cff-version: 1.2.0
-title: FIXME
+title: Byte-Sized Refactoring
 message: >-
   Please cite this lesson using the information in this file
   when you refer to it in publications, and/or if you
@@ -13,10 +13,11 @@ message: >-
   training material.
 type: dataset
 authors:
-  - given-names: FIXME
-    family-names: FIXME
+  - given-names: Corran
+    family-names: Webster
+    orcid: 0009-0004-1527-8379
 abstract: >-
-  FIXME Replace this with a short abstract describing the
-  lesson, e.g. its target audience and main intended
-  learning objectives.
+  This intermediate-level class presents a workflow for taking
+  research scripts and turning them into a re-usable library of
+  functions and classes.
 license: CC-BY-4.0
