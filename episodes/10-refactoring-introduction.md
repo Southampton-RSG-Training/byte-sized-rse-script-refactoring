@@ -1,5 +1,5 @@
 ---
-title: "Lesson 1: Refactoring Research Scripts"
+title: "Introduction"
 teaching: 15
 exercises: 0
 ---
@@ -22,8 +22,6 @@ exercises: 0
 - Understand the importance of testing.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-This session provides a look at *refactoring* code, the process of improving the structure of code without changing the overall behaviour.  In particular we will look at the common patterns found in code written in analysis scripts and notebooks.  With thought and care you can turn these into re-usable libraries that can form the core of multiple analysis libraries.
 
 ## Why Refactor?
 
@@ -64,15 +62,21 @@ Research scripts and notebooks may not be in a state where they are ready to hav
 
 Often when working on new ideas you end up with a script or a notebook that does an analysis that you want, and does it correctly.  In some cases that is good enough: it works, it's replicable, and you don't need to extend it. And that's fine.
 
-But often you find yourself needing slightly different versions of it: maybe you need it to read a different file, or output to a different format, or do an analysis on different dimensions. So you copy the script and modify it. Each time there is a change you risk breaking the entire workflow. Sometimes you find yourself going back to old versions to copy bits and pieces into your new script. Or sometimes you want to share your work and expand it's impact. It's unlikely that your script written exactly as-is will do what every potential user needs. If you can provide a library of useful code alongside the script, others will be able to use, re-use and adapt your code for their tasks.
+At this point, a research script or notebook often looks like the following:
 
-In these cases it's worth pausing and spending a few hours or a day *refactoring* your code: restructuring the code without significantly changing its external behaviour.
+- get the data
+- clean the data up
+- the heart of the code: perform some analysis, train a model, do some inference, etc.
+- report the results (plots, tables, save to a file)
 
-Refactoring research code often goes through a number of steps:
-- create a main function and add tests
+Sometimes the code may be a bit mixed up between the sections, for example it might report results and then do some more analysis, but it's usually possible to organise the code this way by simply moving the lines around.
+
+Scripts which are in this form is an easy target for a quick refactoring exercise that will dramatically improve the quality and re-usability of your code. You can, incrementally work through the following steps:
+
+- create a *main function* and add *tests*
 - turn code blocks into a library of *functions*
 - *parametrise* the functions
 - turn groups of functions into *classes*
-- split the code into *modules*
+- split the code into *modules* based on thematic commonalities
 
-This is an incremental process, and at the end of each step you will have working code, validated by tests, which is easier to test and easier to modify in the future, so you can always stop at the point which feels right for your use case.
+At the end of each step you will have working code, validated by tests, which is easier to test, easier to modify and adapt in the future, and an improvement on what you had in terms of quality. Of course, you can always stop at the point which feels right for your use case.

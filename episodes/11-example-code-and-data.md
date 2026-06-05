@@ -1,6 +1,6 @@
 ---
-title: "Lesson 1.1: Some Example Code"
-teaching: 10
+title: "Example Code"
+teaching: 5
 exercises: 0
 ---
 
@@ -16,17 +16,6 @@ exercises: 0
 - Examine and identify the sections of the code.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Structure of Research Scripts
-
-A research script or notebook often looks like the following:
-
-- get the data
-- clean the data up
-- perform some analysis, train a model, do some inference
-- report the results (plots, tables, save to a file)
-
-Sometimes the code may be a bit mixed up between the sections, for example reporting results and then doing some more analysis, but it's usually possible to organise the code this way.
 
 ## Example Code
 
@@ -149,6 +138,7 @@ with open(output_filename, "w") as f:
 ```
 
 This is a script that follows the structure introduced in this section:
+
 - it reads in some data from a CSV file
 - performs some clean-up:
   - turning strings into numbers

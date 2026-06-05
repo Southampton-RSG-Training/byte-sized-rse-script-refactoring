@@ -1,5 +1,5 @@
 ---
-title: "Lesson 1.3: Code Blocks to Functions"
+title: "Code Blocks to Functions"
 teaching: 20
 exercises: 0
 ---
@@ -164,3 +164,18 @@ def highland_coffee_report(filename, output_filename, country, min_altitude):
 ```
 
 As you create each new function, run the tests to make sure that you haven't introduced any errors.
+
+## What We've Gained
+
+We now have a small library of utility functions which may be useful for interactive exploration or to build other scripts.  For example, if we wanted to read in the data and find all the coffee harvested in 2014, we could do something like:
+``` python
+from highland_coffee_analysis import coffee_data, clean_coffee_data, print_report
+
+coffee_data = read_coffee_data_csv("data/simplified_coffee_ratings.csv")
+clean_coffee_data(coffee_data)
+
+coffee_data_2014 = [
+    sample for sample in coffee_data if sample["harvest_year"] == "2014"
+]
+print_report(coffee_data_2014)
+```

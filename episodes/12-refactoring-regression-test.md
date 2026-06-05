@@ -1,5 +1,5 @@
 ---
-title: "Lesson 1.2: A Main Function and Test"
+title: "Creating a Main Function and Tests"
 teaching: 10
 exercises: 0
 ---
@@ -140,7 +140,7 @@ highland_coffee_report(
 
 We can be reasonably confident that this change hasn't broken the functionality of the script, since we haven't changed any of the core analysis, but our only way of testing this to run the new version of the script and compare the output with what the old version produced.
 
-By creating a function, we've gained is a hook into our code that allows us to write some tests.  At this stage the tests aren't as simple as we might like: these are *integration tests* rather than unit tests, and so they have to deal with things disposing of files once the test is done.
+By creating a function, we've gained is a hook into our code that allows us to write some regression tests.  Regression tests are tests which are designed to ensure that desired behaviour of your code is not changed by any changes you make while developing.  However, at this stage the tests aren't as simple as we might like: these are at the level of *system tests* rather than *unit tests*, and so they have to deal with things like opening and closing of files, inspecting terminal output, and disposing of files once the test is done.
 
 In the sample code we have already written a test for this function:
 ```python
@@ -191,7 +191,7 @@ This is a bit more complex than some tests you may have seen, but it demonstrate
 
 - using a `TemporaryDirectory` to create a contained directory for output files which is automatically deleted when it is done (even if there is an error or test failure).
 
-- redirecting standard output using a `StringIO` and `redirect_stdout`, so that you can validate what is printed to the terminal.
+- redirecting standard output using a `StringIO` as a *mock* together with `redirect_stdout`, so that you can validate what is printed to the terminal.
 
 We can run the test code using:
 ```bash
