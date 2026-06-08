@@ -37,20 +37,14 @@ output_filename = "results.json"
 ```
 Of these the `digits`, `feet_suffixes` and `ratings` constants are things which are likely to remain unchanged, but it is easy to imagine that you might want to run the analysis with different input and output files, and possibly on different countries and minimum altitudes.
 
-So we keep the  `digits`, `feet_suffixes` and `ratings` as module-level constants, but the `filename`, `output_filename`, `country` and `min_altitude` variables make good candidates for the parameters of the main function.  The minimum altitude is less likely to change, so it makes sense to give that a default value.  After this, our script looks like:
+So we keep the  `digits`, `feet_suffixes` and `ratings` as module-level constants, but the `filename`, `output_filename`, `country` and `min_altitude` variables make good candidates for the parameters of the main function.  The minimum altitude is less likely to change, so it makes sense to give that a default value.  After this, our code looks like:
 ``` python
-digits = re.compile(r"\d+")
-feet_suffixes = {"'", "f", "ft", "feet"}
-
-ratings = [...]
-
-def highland_coffee_report(filename, output_filename, country, min_altitude):
+def highland_coffee_report(filename, output_filename, country, min_altitude=1000):
     """Produce a report on coffee suppliers from highland regions."""
     # read the data from the file
     with open(filename) as f:
         reader = DictReader(f)
         coffee_data = list(reader)
-
 
     # clean up the data
     for sample in coffee_data:
@@ -58,33 +52,17 @@ def highland_coffee_report(filename, output_filename, country, min_altitude):
         for column, value in sample.items():
             sample[column] = value.strip()
 
-        # 2. Convert measurements to floats
+        # 2. Convert ratings to floats
         for column in ratings:
             sample[column] = float(sample[column])
 
-        # 3. clean up altitude data
-        altitude = sample["altitude"]
-
-        # - some altitudes give a range
-        numbers = [int(value) for value in re.findall(digits, altitude)]
-
-        # - some altitudes are given in feet
-        if any(altitude.endswith(suffix) for suffix in feet_suffixes):
-            numbers = [int(round(x * 12 * 2.54 / 100, -1)) for x in numbers]
-
-        # - add new columns for min and max altitude
-        if len(numbers) == 0:
-            sample["min_altitude"] = None
-            sample["max_altitude"] = None
-        else:
-            sample["min_altitude"] = min(numbers)
-            sample["max_altitude"] = max(numbers)
+        # 3. Get altitude information
+        extract_altitudes(sample)
 
         # 4. replace missing values with ""
         for column, value in sample.items():
             if value in {"NA", "-"}:
                 sample[column] = ""
-
 
     # find the Colombian highland coffee
     result_data = sorted(

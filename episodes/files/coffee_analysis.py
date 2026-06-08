@@ -1,45 +1,3 @@
----
-title: "Example Code"
-teaching: 5
-exercises: 0
----
-
-:::::::::::::::::::::::::::::::::::::: questions 
-
-- What does a typical research script look like?
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: objectives
-
-- Obtain and run example code used for this lesson.
-- Examine and identify the sections of the code.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Example Code
-
-For this lesson we'll be using some example code available on GitHub, which we'll clone onto our machines using the Bash shell.
-
-So firstly open a Bash shell (via Git Bash in Windows or Terminal on a Mac). Then, on the command line, navigate to where you'd like the example code to reside, and use Git to clone it.
-
-For example, to clone the repository in our home directory, and change our directory to the repository contents:
-
-```bash
-cd
-git clone https://github.com/
-cd refactoring-example
-```
-
-You can run the example code:
-``` bash
-python3 ...
-```
-which will print out a table of data and create a new JSON file.
-
-Now let's take a look at the code:
-
-``` python
 from csv import DictReader
 import re
 from operator import itemgetter
@@ -140,17 +98,3 @@ for sample in result_data:
 # Export result data
 with open(output_filename, "w") as f:
     json.dump(result_data, f)
-```
-
-This is a script that follows the structure introduced in this section:
-
-- it reads in some data from a CSV file
-- performs some clean-up:
-  - turning strings into numbers
-  - untangling altitude data
-  - handling missing values
-- performs a simple analysis:
-  - filters and sorts a subset of the data
-- outputs the results:
-  - prints to the screen in a tabular format
-  - writes to a JSON file

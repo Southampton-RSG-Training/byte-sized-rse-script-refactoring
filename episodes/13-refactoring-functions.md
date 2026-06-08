@@ -72,9 +72,7 @@ Once you have confirmed that your change is good, this could be a good place to 
 
 ### Continued Refactoring
 
-We continue with each section of the code, creating functions.
-
-For the clean-up function, the logic for extracting the altitude data is complex, so it may make sense to separate it out into its own function:
+We continue with each section of the code, creating functions:
 ``` python
 def clean_coffee_data(coffee_data):
     """Clean up a coffee dataset."""
@@ -87,33 +85,13 @@ def clean_coffee_data(coffee_data):
         for column in ratings:
             sample[column] = float(sample[column])
 
-        # 3. clean up altitude data
-        clean_altitude(sample)
+        # 3. get altitude data
+        extract_altitude(sample)
 
         # 4. replace missing values with ""
         for column, value in sample.items():
             if value in {"NA", "-"}:
                 sample[column] = ""
-
-
-def clean_altitude(coffee_sample):
-    "Clean up altitude data for a sample."
-    altitude = coffee_sample["altitude"]
-
-    # some altitudes give a range
-    numbers = [int(value) for value in re.findall(digits, altitude)]
-
-    # some altitudes are given in feet
-    if any(altitude.endswith(suffix) for suffix in feet_suffixes):
-        numbers = [int(round(x * 12 * 2.54 / 100, -1)) for x in numbers]
-
-    # add new columns for min and max altitude
-    if len(numbers) == 0:
-        coffee_sample["min_altitude"] = None
-        coffee_sample["max_altitude"] = None
-    else:
-        coffee_sample["min_altitude"] = min(numbers)
-        coffee_sample["max_altitude"] = max(numbers)
 ```
 
 For the analysis step the parameters should definitely include the coffee data, but the code will be  more useful if we also allow the user to pass additional parameters:
