@@ -70,6 +70,7 @@ episodes:
 - 11-example-code-and-data.md
 - 12-refactoring-regression-test.md
 - 13-refactoring-functions.md
+- 14-refactoring-classes.md
 
 # Information for Learners
 learners: 

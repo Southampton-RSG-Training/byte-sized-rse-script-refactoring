@@ -51,3 +51,7 @@ po/*~
 
 # renv sandbox needed for renv version 0.16.0
 renv/sandbox # OPTIONAL
+
+# custom for the code in this repo
+__pycache__
+results.json

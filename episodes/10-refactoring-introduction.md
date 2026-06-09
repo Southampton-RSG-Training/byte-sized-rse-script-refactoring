@@ -80,3 +80,17 @@ Scripts which are in this form is an easy target for a quick refactoring exercis
 - split the code into *modules* based on thematic commonalities
 
 At the end of each step you will have working code, validated by tests, which is easier to test, easier to modify and adapt in the future, and an improvement on what you had in terms of quality. Of course, you can always stop at the point which feels right for your use case.
+
+::::::::::::::::: keypoints
+
+- refactoring is changing code without changing the inputs and outputs
+
+- refactoring involves thinking about the structure of your code and how you could make it better
+
+- having regression tests allows you to be sure that you don't introduce bugs when refactoring
+
+- research scripts often have a common structure which makes them easy to refactor
+
+- you should refactor code only as much as makes sense based on your plans for use
+
+:::::::::::::::::::::::::::

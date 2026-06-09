@@ -33,7 +33,7 @@ cd refactoring-example
 
 You can run the example code:
 ``` bash
-python3 ...
+python3 coffee_analysis.py
 ```
 which will print out a table of data and create a new JSON file.
 
@@ -116,7 +116,7 @@ for sample in coffee_data:
 
 # find the Colombian highland coffee
 result_data = sorted(
-    [
+    (
         sample
         for sample in coffee_data
         if (
@@ -124,7 +124,7 @@ result_data = sorted(
             and sample["min_altitude"] is not None
             and sample["min_altitude"] >= min_altitude
         )
-    ],
+    ),
     key=itemgetter("flavor", "cupper_points"),
     reverse=True,
 )
@@ -154,3 +154,11 @@ This is a script that follows the structure introduced in this section:
 - outputs the results:
   - prints to the screen in a tabular format
   - writes to a JSON file
+
+There is one function that handles a moderately complex set of steps to handle different types of altitude data (feet vs. metres, and ranges of values vs single values).
+
+::::::::::::::::: keypoints
+
+- research scripts often follow a common simple structure
+
+:::::::::::::::::::::::::::

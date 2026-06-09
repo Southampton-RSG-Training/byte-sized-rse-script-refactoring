@@ -64,7 +64,7 @@ coffee_data = read_coffee_data_csv(filename)
 
 At this point we have refactored the CSV reading code, but we shouldn't have changed the behaviour. We can verify this by running the test code using:
 ```bash
-> python -m unittest tests/test_highland_coffee_analysis.py
+python -m unittest tests/test_highland_coffee_analysis.py
 ```
 The tests should still pass; if they don't you have a bug which needs to be fixed before continuing.
 
@@ -99,7 +99,7 @@ For the analysis step the parameters should definitely include the coffee data, 
 def find_coffee(coffee_data, country, min_altitude):
     """Find data from a country over a certain altitude."""
     return sorted(
-        [
+        (
             sample
             for sample in coffee_data
             if (
@@ -107,7 +107,7 @@ def find_coffee(coffee_data, country, min_altitude):
                 and sample["min_altitude"] is not None
                 and sample["min_altitude"] >= min_altitude
             )
-        ],
+        ),
         key=itemgetter("flavor", "cupper_points"),
         reverse=True,
     )
@@ -141,9 +141,7 @@ def highland_coffee_report(filename, output_filename, country, min_altitude):
     write_coffee_data_json(results, output_filename)
 ```
 
-As you create each new function, run the tests to make sure that you haven't introduced any errors.
-
-## What We've Gained
+### What We've Gained
 
 We now have a small library of utility functions which may be useful for interactive exploration or to build other scripts.  For example, if we wanted to read in the data and find all the coffee harvested in 2014, we could do something like:
 ``` python
@@ -157,3 +155,34 @@ coffee_data_2014 = [
 ]
 print_report(coffee_data_2014)
 ```
+
+::::::::::::::::: callout
+
+### What About Pandas?
+
+If you are familiar with the Pandas library, one question you might have is why not just use Pandas DataFrames to perform the analysis instead of going and creating our own. For this particular example, the answer is that it *would* make a lot of sense, but we're doing it this way to illustrate a general principle that works in lots of other cases.
+
+But even if we were to use Pandas (or any other third-party library that is replacing code you've written), a lot of the advice we've seen so far remains: write high-level regression tests, re-write your code, and run the regression tests to make sure nothing important has changed.
+
+:::::::::::::::::::::::::
+
+## Testing
+
+As you create each new function, run the tests to make sure that you haven't introduced any errors:
+```bash
+python -m unittest tests/test_highland_coffee_analysis.py
+```
+
+It may be tempting to write unit tests for each of these new functions, and if you are going to stop at this point in the refactoring it *would* make sense to do this.  However, if you are going to go further and create classes in the way that we talk about in the next section, it's probably wise to wait.
+
+::::::::::::::::: keypoints
+
+- code that corresponds to common research code sections are natural things to turn into functions
+
+- you need to think about what the inputs and outputs of your new functions should be
+
+- when you have created each new function the regression tests should still pass
+
+- this sort of refactoring creates a library of functions that can be re-used in the future for similar analysis
+
+:::::::::::::::::::::::::::

@@ -74,7 +74,7 @@ for sample in coffee_data:
 
 # find the Colombian highland coffee
 result_data = sorted(
-    [
+    (
         sample
         for sample in coffee_data
         if (
@@ -82,7 +82,7 @@ result_data = sorted(
             and sample["min_altitude"] is not None
             and sample["min_altitude"] >= min_altitude
         )
-    ],
+    ),
     key=itemgetter("flavor", "cupper_points"),
     reverse=True,
 )

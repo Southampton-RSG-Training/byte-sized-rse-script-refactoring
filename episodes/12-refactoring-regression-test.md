@@ -66,7 +66,7 @@ def highland_coffee_report(filename, output_filename, country, min_altitude=1000
 
     # find the Colombian highland coffee
     result_data = sorted(
-        [
+        (
             sample
             for sample in coffee_data
             if (
@@ -74,7 +74,7 @@ def highland_coffee_report(filename, output_filename, country, min_altitude=1000
                 and sample["min_altitude"] is not None
                 and sample["min_altitude"] >= min_altitude
             )
-        ],
+        ),
         key=itemgetter("flavor", "cupper_points"),
         reverse=True,
     )
@@ -99,7 +99,6 @@ if __name__ == '__main__':
         country="Colombia",
     )
 ```
-
 
 ### What We've Gained
 
@@ -173,8 +172,17 @@ This is a bit more complex than some tests you may have seen, but it demonstrate
 
 We can run the test code using:
 ```bash
-> python -m unittest tests/test_highland_coffee_analysis.py
+python -m unittest tests/test_highland_coffee_analysis.py
 ```
 
 We can do this after every change we make, and build confidence that out refactoring hasn't introduced any new bugs or unexpected behaviour.
 
+::::::::::::::::: keypoints
+
+- a simple refactor which brings immediate benefits is to create a function that includes the whole script
+
+- choosing appropriate parameters allows the function to be re-usable in other situations
+
+- a regression test can be written for the function that allows further refactoring in confidence
+
+:::::::::::::::::::::::::::
