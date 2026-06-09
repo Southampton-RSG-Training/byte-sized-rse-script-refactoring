@@ -46,7 +46,7 @@ def highland_coffee_report(filename, output_filename, country, min_altitude=1000
 ```
 Then we can indent all of the following code. Most editors and IDEs have a way to do this easily: often by selecting the code you want to indent and pressing the "tab" key.
 
-The code at this point won't do anything if it is run. We need to add some code that calls the function with the appropriate arguments.  In Python it makes sense to have this code inside an `if __name__ == "__main__":` block at the end of the file:
+The code after this change won't do anything if it is run. We need to add some code that calls the function with the appropriate arguments.  In Python it makes sense to have this code inside an `if __name__ == "__main__":` block at the end of the file:
 ``` python
 if __name__ == '__main__':
     highland_coffee_report(
@@ -128,6 +128,8 @@ When we run it, it should produce exactly the same output to the screen and to t
 Who's successfully created the new function and run the code?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+Once you have confirmed that your change is good, this could be a good place to commit your changes with Git.  By doing this you lock-in the progress you have made, and can always revert to this point if subsequent steps run into problems.
 
 ### What We've Gained
 

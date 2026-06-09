@@ -62,13 +62,13 @@ coffee_data = read_coffee_data_csv(filename)
 
 ### Testing and Committing Your Changes
 
-At this point we have refactored the CSV reading code, but we shouldn't have changed the behaviour. We can verify this by running the test code using:
+We have now refactored the CSV reading code, but we shouldn't have changed the behaviour. We can verify this by running the test code using:
 ```bash
 python -m unittest tests/test_highland_coffee_analysis.py
 ```
 The tests should still pass; if they don't you have a bug which needs to be fixed before continuing.
 
-Once you have confirmed that your change is good, this could be a good place to commit your changes with Git.  By doing this you
+Once you have confirmed that your change is good, this could be a good place to commit your changes with Git.  By doing this you lock-in the progress you have made, and can always revert to this point if subsequent steps run into problems.
 
 ::::::::::::::::::::::::::::::::::::: instructor
 
