@@ -31,16 +31,18 @@ This in contrast with other coding activities, such as adding features and fixin
 
 The answer is that refactoring is *investment* in the code, which should more than repay itself in making ongoing development easier and faster.  When code is grouped logically into modules focused on common concerns it becomes easier to add functionality and identify where problems occur; and perhaps more importantly it becomes easier to test at a granular level.  It also becomes easier to share code, and for collaborators to understand what is happening in a program and why.
 
-But just as with any other investment you do need to think about whether you should spend the effort. Sometimes that effort is immediate: a day spent refactoring before adding new features may repay itself by reducing the development by more than a day.  But sometimes the return is less tangible: a script refactored into a library may be easier for other researchers to use, and so dramatically increase the *impact* of your work even if it doesn't immediately pay-off in terms of effort to do further development.
+But just as with any other investment you do need to think about whether you should spend the effort. Sometimes that effort is repaid immediately: a day spent refactoring before adding new features may repay itself by reducing the development by more than a day.  But sometimes the return is less tangible: a script refactored into a library may be easier for other researchers to use, and so dramatically increase the *impact* of your work even if it doesn't immediately pay-off in terms of effort to do further development.
 
 ## What Does Refactoring Involve?
 
-Refactoring typically involves a number of steps:
+Refactoring typically involves tasks such as:
 
-- thinking and analysing the structure of the code - what patterns do you see and how can you change them for the better?
-- grouping code blocks thematically into functions
-- thinking about what the inputs and outputs of the functions should be
-- restructuring code to call those functions
+- thinking and analysing the structure of the code
+  - what patterns do you see?
+  - how can you change them for the better?
+- grouping code thematically into functions, including
+  - thinking about what the inputs and outputs of the functions should be
+  - restructuring code to call those functions
 - grouping related code into re-usable libraries or modules
 - grouping functions and data together into classes and objects
 - changing an algorithm or library used in a computation
@@ -49,20 +51,22 @@ Sometimes it can also involve re-arranging the choices made previously: perhaps 
 
 ## Refactoring Confidently
 
-Whenever you change code you run the risk of introducing bugs. Since refactoring involves changing code without changing behaviour to minimise bugs you need to have holistic tests of the code that you are changing: depending on the level of the code you are working with these may be called system tests, integration tests or regression tests.
+Whenever you change code you run the risk of introducing bugs. Since refactoring involves changing code without changing behaviour to minimise bugs you need to have holistic tests of the code that you are changing: these are typically called *regression tests*, but may take the form of system tests, integration tests or unit tests, depending on the level at which you are refactoring within a codebase.
 
 - before refactoring ensure that you have a way of testing your code
 - the tests should be easy to run (ideally just one command) and fast (seconds is better than minutes)
 - run your tests after completing every change to ensure that you haven't broken anything
 - fix any errors or bugs you have introduced before moving onto the next step
 
-Research scripts and notebooks may not be in a state where they are ready to have formal tests written for them: in this case it is often enough to have a small validation input dataset and a corresponding set of correct outputs. The key is that these should be fast to run and easy to validate, particularly if you are doing so manually.
+Research scripts and notebooks may not be in a state where they are ready to have formal tests written for them: in this case it is often enough to have a small validation input dataset and a corresponding set of correct outputs that can easily be checked manually. The key is that these should be fast to run and easy to validate.
+
+Depending on the maturity of your code, refactoring might involve breaking some unit tests. If you are refactoring functions with unittests into classes, for example, then you are likely to break the unit tests. Fortunately when refactoring it is usually straightforward to update the tests to use the new code, and doing this helps validate that your choices of how you re-organised your code are good.
 
 ## Refactoring Research Scripts
 
 Often when working on new ideas you end up with a script or a notebook that does an analysis that you want, and does it correctly.  In some cases that is good enough: it works, it's replicable, and you don't need to extend it. And that's fine.
 
-At this point, a research script or notebook often looks like the following:
+Often a research script or notebook looks something like the following:
 
 - get the data
 - clean the data up
@@ -74,10 +78,8 @@ Sometimes the code may be a bit mixed up between the sections, for example it mi
 Scripts which are in this form is an easy target for a quick refactoring exercise that will dramatically improve the quality and re-usability of your code. You can, incrementally work through the following steps:
 
 - create a *main function* and add *tests*
-- turn code blocks into a library of *functions*
-- *parametrise* the functions
+- turn each of the sections described above into a library of *functions*
 - turn groups of functions into *classes*
-- split the code into *modules* based on thematic commonalities
 
 At the end of each step you will have working code, validated by tests, which is easier to test, easier to modify and adapt in the future, and an improvement on what you had in terms of quality. Of course, you can always stop at the point which feels right for your use case.
 

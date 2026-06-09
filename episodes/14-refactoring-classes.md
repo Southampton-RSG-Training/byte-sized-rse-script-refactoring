@@ -20,10 +20,6 @@ exercises: 0
 
 ## Functions to Classes
 
-The goal of object oriented programming is to improve code legibility and re-usability by combining information about data structures alongside the code that operates on those data structures.  There's a lot of computer science theory which goes along with that (encapsulation, inhertance, polymorphism, SOLID principles, and so on), but from the pragmatic point of view for research code, writing classes can make your code easier to use by resucing the cognitive load on your users (including "future you").
-
-A deeper dive into OOP is outside the scope of this class, and we're going to assume a basic level of familiarity with Python's OOP features.
-
 Often you'll notice patterns of functions which take the same parameter or similar related parameters. For example, most of the functions we have written take a `coffee_data` variable which is a list of sample dictionaries:
 ``` python
 def clean_coffee_data(coffee_data): ...
@@ -34,16 +30,29 @@ def print_report(coffee_data): ...
 
 def write_coffee_data_json(coffee_data, path): ...
 ```
-When we see patterns like this, it's a good sign that a class may be appropriate where the common parameters become attributes of the class and the functions become methods.
+In this case we have just one shared parameter, but it is common to have more than one.  When we see patterns like this, it's a good sign that object-oriented programming may be an appropriate approach.
 
-This transformation is again, fairly mechanical. First we create the structure of the class with an `__init__` method that takes the common parameters and assigns them as attributes:
+::::::::::::::::: callout
+
+The goal of object-oriented programming (OOP) is to improve code legibility and re-usability by combining information about data structures alongside the code that operates on those data structures.  There's a lot of computer science theory which goes along with that (encapsulation, inhertance, polymorphism, SOLID principles, and so on), but from the pragmatic point of view for research code, writing classes can make your code easier to use by resucing the cognitive load on your users (including "future you").
+
+A deeper dive into OOP is outside the scope of this class, and we're going to assume a basic level of familiarity with Python's OOP features. If you haven't seen them before, this is a fairly simple example of a class, so hopefully you will be able to follow along.
+
+:::::::::::::::::::::::::
+
+In cases like what we see here, the common parameters will become attributes of the class and the functions become methods. 
+
+### Creating a Class
+
+This transformation is again, fairly mechanical. First we create the structure of the class with an `__init__` method as is standard in Python. It `__init__` method initializes the class by taking the common parameters and assigning them as attributes:
 ``` python
 class CoffeeData:
 
     def __init__(self, coffee_data):
         self.coffee_data = list(coffee_data)
 ```
-We can then take each of our functions and transform them into methods.  The common parameters are replaced by `self` in the function signature, and then in the body of the method they are replaced by the attribute:
+
+We can then take each of our target functions and transform them into methods.  The common parameters are replaced by `self` in the function signature, and then in the body of the method they are replaced by the attribute:
 ``` python
 class CoffeeData:
 
@@ -114,8 +123,6 @@ Who's successfully managed to refactor everything and get the test to pass?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::: callout
-
 ## What we've gained
 
 We now have a single object that encapsulates the data that we want to work with, which can simplify and improve the readability of our code, and make it easier to work with interactively.
@@ -133,6 +140,8 @@ coffee_data_2014 = CoffeeData(
 coffee_data_2014.print_report()
 ```
 Compared to the function version, we've simplified the imports and the method calls
+
+::::::::::::::::: callout
 
 ### Alternative Approaches and Extensions
 
