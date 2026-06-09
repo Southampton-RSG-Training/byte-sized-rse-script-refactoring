@@ -106,6 +106,14 @@ def highland_coffee_report(filename, output_filename, country, min_altitude):
     results.write_coffee_data_json(output_filename)
 ```
 
+::::::::::::::::::::::::::::::::::::: instructor
+
+### Checkpoint: Attendee Progress
+
+Who's successfully managed to refactor everything and get the test to pass?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::: callout
 
 ## What we've gained

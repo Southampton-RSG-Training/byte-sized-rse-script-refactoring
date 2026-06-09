@@ -70,6 +70,14 @@ The tests should still pass; if they don't you have a bug which needs to be fixe
 
 Once you have confirmed that your change is good, this could be a good place to commit your changes with Git.  By doing this you
 
+::::::::::::::::::::::::::::::::::::: instructor
+
+### Checkpoint: Attendee Progress
+
+Who's successfully managed to refactor `read_coffee_data_csv` and get the test to pass?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ### Continued Refactoring
 
 We continue with each section of the code, creating functions:
@@ -140,6 +148,14 @@ def highland_coffee_report(filename, output_filename, country, min_altitude):
     print_report(results)
     write_coffee_data_json(results, output_filename)
 ```
+
+::::::::::::::::::::::::::::::::::::: instructor
+
+### Checkpoint: Attendee Progress
+
+Who's successfully managed to refactor everything and get the test to pass?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### What We've Gained
 

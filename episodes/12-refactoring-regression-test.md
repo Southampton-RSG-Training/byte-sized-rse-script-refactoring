@@ -37,7 +37,26 @@ output_filename = "results.json"
 ```
 Of these the `digits`, `feet_suffixes` and `ratings` constants are things which are likely to remain unchanged, but it is easy to imagine that you might want to run the analysis with different input and output files, and possibly on different countries and minimum altitudes.
 
-So we keep the  `digits`, `feet_suffixes` and `ratings` as module-level constants, but the `filename`, `output_filename`, `country` and `min_altitude` variables make good candidates for the parameters of the main function.  The minimum altitude is less likely to change, so it makes sense to give that a default value.  After this, our code looks like:
+So we keep the  `digits`, `feet_suffixes` and `ratings` as module-level constants, but the `filename`, `output_filename`, `country` and `min_altitude` variables make good candidates for the parameters of the main function.  The minimum altitude is less likely to change, so it makes sense to give that a default value.
+
+To create the new function we add the function declaration and docstring after the constant declarations but before the code that reads in the file:
+``` python
+def highland_coffee_report(filename, output_filename, country, min_altitude=1000):
+    """Produce a report on coffee suppliers from highland regions."""
+```
+Then we can indent all of the following code. Most editors and IDEs have a way to do this easily: often by selecting the code you want to indent and pressing the "tab" key.
+
+The code at this point won't do anything if it is run. We need to add some code that calls the function with the appropriate arguments.  In Python it makes sense to have this code inside an `if __name__ == "__main__":` block at the end of the file:
+``` python
+if __name__ == '__main__':
+    highland_coffee_report(
+        filename="data/simplified_coffee_ratings.csv",
+        output_filename="results.json",
+        country="Colombia",
+    )
+```
+
+After all this, our code looks like:
 ``` python
 def highland_coffee_report(filename, output_filename, country, min_altitude=1000):
     """Produce a report on coffee suppliers from highland regions."""
@@ -100,6 +119,16 @@ if __name__ == '__main__':
     )
 ```
 
+When we run it, it should produce exactly the same output to the screen and to the `results.json` file.
+
+::::::::::::::::::::::::::::::::::::: instructor
+
+### Checkpoint: Attendee Progress
+
+Who's successfully created the new function and run the code?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ### What We've Gained
 
 From this one simple change, our script has become a simple library.  We can now import the code from other scripts, or interactively, to re-use it:
@@ -117,7 +146,7 @@ highland_coffee_report(
 
 We can be reasonably confident that this change hasn't broken the functionality of the script, since we haven't changed any of the core analysis, but our only way of testing this to run the new version of the script and compare the output with what the old version produced.
 
-By creating a function, we've gained is a hook into our code that allows us to write some regression tests.  Regression tests are tests which are designed to ensure that desired behaviour of your code is not changed by any changes you make while developing.  However, at this stage the tests aren't as simple as we might like: these are at the level of *system tests* rather than *unit tests*, and so they have to deal with things like opening and closing of files, inspecting terminal output, and disposing of files once the test is done.
+But by creating a function, we've gained a hook that allows us to write some regression tests.  Regression tests are tests which are designed to ensure that desired behaviour of your code is not changed by any changes you make while developing.  However, at this stage the tests aren't as simple as we might like: these are at the level of *system tests* rather than *unit tests*, and so they have to deal with things like opening and closing of files, inspecting terminal output, and disposing of files once the test is done.
 
 In the sample code we have already written a test for this function:
 ```python
@@ -164,18 +193,32 @@ class TestHighlandCoffeeAnalysis(unittest.TestCase):
             self.assertEqual(result_json, comparison_json)
 ```
 
+::::::::::::::::::::::::::::::::::::: callout
+
+### Temporary directories and mocking standard output
+
 This is a bit more complex than some tests you may have seen, but it demonstrates two important techniques for testing the output of research scripts:
 
 - using a `TemporaryDirectory` to create a contained directory for output files which is automatically deleted when it is done (even if there is an error or test failure).
 
 - redirecting standard output using a `StringIO` as a *mock* together with `redirect_stdout`, so that you can validate what is printed to the terminal.
 
+:::::::::::::::::::::::::::::::::::::::::::::
+
 We can run the test code using:
 ```bash
-python -m unittest tests/test_highland_coffee_analysis.py
+python3 -m unittest tests/test_highland_coffee_analysis.py
 ```
 
 We can do this after every change we make, and build confidence that out refactoring hasn't introduced any new bugs or unexpected behaviour.
+
+::::::::::::::::::::::::::::::::::::: instructor
+
+### Checkpoint: Attendee Progress
+
+Who's successfully managed to get the tests to pass?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::: keypoints
 

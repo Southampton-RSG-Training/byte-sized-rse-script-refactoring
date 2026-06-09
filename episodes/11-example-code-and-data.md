@@ -37,6 +37,13 @@ python3 coffee_analysis.py
 ```
 which will print out a table of data and create a new JSON file.
 
+::::::::::::::::::::::::::::::::::::: instructor
+
+- Obtain and run example code used for this lesson.
+- Examine and identify the sections of the code.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 Now let's take a look at the code:
 
 ``` python

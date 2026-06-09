@@ -9,4 +9,5 @@ research it was designed for, both by themselves but also with collaborators,
 team members, and others.
 
 It assumes some familiarity with Python, as we will be using that as the
-language to demonstrate the process.
+language to demonstrate the process. Some familiarity with object-oriented
+progrmming in Python may be useful in the last section of the course.
