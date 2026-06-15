@@ -27,8 +27,8 @@ For example, to clone the repository in our home directory, and change our direc
 
 ```bash
 cd
-git clone https://github.com/
-cd refactoring-example
+git clone https://github.com/Southampton-RSG-Training/byte-sized-rse-refactoring-example
+cd byte-sized-rse-refactoring-example
 ```
 
 You can run the example code:
