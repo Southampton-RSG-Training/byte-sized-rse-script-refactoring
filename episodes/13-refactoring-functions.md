@@ -21,6 +21,7 @@ exercises: 0
 ## Code Blocks to Functions
 
 Each of the sections sections discussed in the previous section is a natural grouping to take a block and turn it into a function.  This is usually a fairly mechanical process:
+
 - put the function structure around the code block (eg. `def` keyword, indent the block, add docstring)
 - work out the inputs and outputs if any
 - change the main function
@@ -94,7 +95,7 @@ def clean_coffee_data(coffee_data):
             sample[column] = float(sample[column])
 
         # 3. get altitude data
-        extract_altitude(sample)
+        extract_altitudes(sample)
 
         # 4. replace missing values with ""
         for column, value in sample.items():

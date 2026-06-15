@@ -1,5 +1,6 @@
 from contextlib import redirect_stdout
 import io
+import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
@@ -29,7 +30,7 @@ class TestHighlandCoffeeAnalysis(unittest.TestCase):
             # Run the report function, but capture stdout
             out = io.StringIO()
             with redirect_stdout(out):
-                highland_coffee_report(input_file, output_file)
+                highland_coffee_report(input_file, output_file, "Colombia")
 
             # Test that the output is what we expect
             self.assertEqual(out.getvalue(), comparison_stdout)

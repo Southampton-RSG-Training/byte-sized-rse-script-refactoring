@@ -56,7 +56,49 @@ if __name__ == '__main__':
     )
 ```
 
-After all this, our code looks like:
+::::::::::::::::::::::::::::::::::::: callout
+
+### What is `if __name__ == '__main__':`?
+
+When Python runs a script or imports a module, it creates a number of special module-level global variables that give information about the context that the code is being run in.  These include `__name__` which is the name of the module, `__file__` which is the path where the code is located, and so on (all of them have the double underscore or "dunder" which indicates that they are treated specially by Python).
+
+When Python is run on a `.py` file, the module's `__name__` is set to the string value `"__main__"`, however if the same file is *imported* then the `__name__` is the name of the file without the `.py`.  So code inside an `if __name__ == "__main__":` block is only run when the file is the main script and not when it is imported.  This is a good place to put code that does work as opposed to code that defines things: doing this means your script becomes a cleanly importable library.
+
+:::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: callout
+
+### Trailing Commas and Defensive Programming
+
+In our call of the main function:
+``` python
+highland_coffee_report(
+    filename="data/simplified_coffee_ratings.csv",
+    output_filename="results.json",
+    country="Colombia",
+)
+```
+you might have noticed the trailing comma on the last line.  Unlike some languages, it is is syntactically legal to have a trailing comma in most contexts in Python, it is simply ignored.
+
+Including it here has two purposes:
+
+- it signals to code formatters like Black that we want the arguments split over multiple lines when formatting; and more importantly
+- it provides a little bit of protection against errors when changing code.
+
+To explain the last point, consider if the comma was not there on the last line, and we decided we wanted to pass the `min_altitude` as well.  It's very easy to end up with code like:
+``` python
+highland_coffee_report(
+    filename="data/simplified_coffee_ratings.csv",
+    output_filename="results.json",
+    country="Colombia"
+    min_altitude=1250
+)
+```
+where we are missing a *required* comma after `"Colombia"`.  It's easy to fix, but annoying if you miss it and causes a syntax error when you run the code.  You can also easily get similar problems if you re-order the arguments.  Habitually including the comma at the end of each line makes the errors less likely.
+
+:::::::::::::::::::::::::::::::::::::::::::::
+
+After all this, our new function and the code that calls it looks like:
 ``` python
 def highland_coffee_report(filename, output_filename, country, min_altitude=1000):
     """Produce a report on coffee suppliers from highland regions."""
