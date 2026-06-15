@@ -6,14 +6,15 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you refactor script sections into functions?
-- How do you identify inputs and outputs of the functions?
+- How can you make it easier to work with functions that have similar signatures?
+- How do you refactor collections of functions into classes?
+- How do you the attributes and methods for a new class?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Refactor the example code as a collection of functions.
+- Refactor the example code as class.
 - Create a new "main" block for the script.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

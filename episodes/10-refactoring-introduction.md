@@ -46,6 +46,7 @@ Refactoring typically involves tasks such as:
 - grouping related code into re-usable libraries or modules
 - grouping functions and data together into classes and objects
 - changing an algorithm or library used in a computation
+- writing tests for the new functions and classes
 
 Sometimes it can also involve re-arranging the choices made previously: perhaps the way that functions were grouped into a class previously wasn't quite right and some methods need to be removed and other ones added; or the classes themselves fundametally re-thought.
 
@@ -83,7 +84,7 @@ Scripts which are in this form are an easy target for a quick refactoring exerci
 - turn each of the sections described above into a library of *functions*
 - turn groups of functions into *classes*
 
-At the end of each step you will have working code, validated by tests, which is easier to test, easier to modify and adapt in the future, and an improvement on what you had in terms of quality. Of course, you can always stop at the point which feels right for your use case.
+At the end of each step you will have working code, validated by regression tests. The code will be more modular, making it is easier to test, easier to modify and adapt in the future, and an improvement on what you had in terms of quality. Of course, you can always stop at the point which feels right for your use case.
 
 ::::::::::::::::: keypoints
 
