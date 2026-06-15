@@ -34,7 +34,7 @@ In this case we have just one shared parameter, but it is common to have more th
 
 ::::::::::::::::: callout
 
-The goal of object-oriented programming (OOP) is to improve code legibility and re-usability by combining information about data structures alongside the code that operates on those data structures.  There's a lot of computer science theory which goes along with that (encapsulation, inhertance, polymorphism, SOLID principles, and so on), but from the pragmatic point of view for research code, writing classes can make your code easier to use by resucing the cognitive load on your users (including "future you").
+The goal of object-oriented programming (OOP) is to improve code legibility and re-usability by combining information about data structures alongside the code that operates on those data structures.  There's a lot of computer science theory which goes along with that (encapsulation, inhertance, polymorphism, SOLID principles, and so on), but from the pragmatic point of view for research code, writing classes can make your code easier to use by reducing the cognitive load on your users (including "future you").
 
 A deeper dive into OOP is outside the scope of this class, and we're going to assume a basic level of familiarity with Python's OOP features. If you haven't seen them before, this is a fairly simple example of a class, so hopefully you will be able to follow along.
 
@@ -44,7 +44,7 @@ In cases like what we see here, the common parameters will become attributes of 
 
 ### Creating a Class
 
-This transformation is again, fairly mechanical. First we create the structure of the class with an `__init__` method as is standard in Python. It `__init__` method initializes the class by taking the common parameters and assigning them as attributes:
+This transformation is again, fairly mechanical. First we create the structure of the class with an `__init__` method as is standard in Python. An `__init__` method initializes the class by taking the common parameters and assigning them as attributes:
 ``` python
 class CoffeeData:
 
@@ -52,7 +52,7 @@ class CoffeeData:
         self.coffee_data = list(coffee_data)
 ```
 
-We can then take each of our target functions and transform them into methods.  The common parameters are replaced by `self` in the function signature, and then in the body of the method they are replaced by the attribute:
+We can then take each of our target functions and transform them into methods.  The common parameters are replaced by `self` in the function signature, and then in the body of the method they are replaced by the attribute on self (so in our example, `coffee_data` becomes `self.coffee_data`):
 ``` python
 class CoffeeData:
 
@@ -104,6 +104,48 @@ class CoffeeData:
             coffee_data = cls(reader)
         return coffee_data
 ```
+
+::::::::::::::::::::::::::::::::::::: callout
+
+### Decorators
+
+In Python, unlike some languages, functions are themselves objects and can be used as arguments and return values to other functions.  A function that takes a function as an input and transforms it somehow is called a "decorator".  For example, this decorator takes a function and wraps it in code to time it:
+``` python
+import time
+
+def time_function(fn):
+    def timer(*args, **kwargs):
+        t = time.perf_counter()
+        result = fn(*args, **kwargs)
+        print(f"Time for {fn}:", time.perf_counter() - t)
+        return result
+    return timer
+```
+You could use this something like:
+``` python
+def slow_function(n):
+    for _ in range(n):
+        time.sleep(0.1)
+
+timed_slow_function = time_function(slow_function)
+
+timed_slow_function(10)
+```
+Which should print out that it took about a second to run.
+
+Python has a special `@` syntax for decorators that you always want applied to a function:
+``` python
+@time_function
+def slow_function(n):
+    for _ in range(n):
+        time.sleep(0.1)
+```
+which is equivalent to writing `slow_function = time_function(slow_function)`.
+
+Python provides some built-in decorators like `@classmethod`, `@staticmethod` and `@property` that classes recognise and will change the behaviour of methods that are decorated with them.  The `@classmethod` decorator tells Python to call the method with the *class* as the first argument (usually denated as `cls`) instead of the *instance* (usually denoted as `self`), giving similar behaviour to class methods in languages like C++, C# and Java.
+
+:::::::::::::::::::::::::::::::::::::::::::::
+
 
 Finally, in our main function, we need to create the instance of the class, and then repace function calls with method calls:
 ``` python
@@ -174,7 +216,7 @@ This is a logical end-point in refactoring, so now would be a good time to write
 
 ::::::::::::::::: keypoints
 
-- objects and classes group data and the functions that operate on the data together
+- objects and classes encapsulate data and the functions that operate on the data together
 
 - functions with common parameters are natural targets to become methods on a class and the parameters become attributes
 

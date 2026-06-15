@@ -39,8 +39,9 @@ which will print out a table of data and create a new JSON file.
 
 ::::::::::::::::::::::::::::::::::::: instructor
 
-- Obtain and run example code used for this lesson.
-- Examine and identify the sections of the code.
+### Checkpoint: Attendee Progress
+
+Who's successfully managed to get the code to run?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -149,7 +150,7 @@ with open(output_filename, "w") as f:
     json.dump(result_data, f)
 ```
 
-This is a script that follows the structure introduced in this section:
+This is a script that follows the structure described in the introduction:
 
 - it reads in some data from a CSV file
 - performs some clean-up:
@@ -162,7 +163,7 @@ This is a script that follows the structure introduced in this section:
   - prints to the screen in a tabular format
   - writes to a JSON file
 
-There is one function that handles a moderately complex set of steps to handle different types of altitude data (feet vs. metres, and ranges of values vs single values).
+There is one function that handles a moderately complex set of steps to handle different types of altitude data (feet vs. metres, and ranges of values vs single values), but other than that this is a simple linear script.
 
 ::::::::::::::::: keypoints
 

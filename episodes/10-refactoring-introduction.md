@@ -58,9 +58,11 @@ Whenever you change code you run the risk of introducing bugs. Since refactoring
 - run your tests after completing every change to ensure that you haven't broken anything
 - fix any errors or bugs you have introduced before moving onto the next step
 
+The key is that if you introduce a bug or error into your code it should *fail fast* allowing you to immediately see that there is a problem: you do not want to be many steps into a refactor and realize that you introduced a subtle bug early on that will require significant work to fix.
+
 Research scripts and notebooks may not be in a state where they are ready to have formal tests written for them: in this case it is often enough to have a small validation input dataset and a corresponding set of correct outputs that can easily be checked manually. The key is that these should be fast to run and easy to validate.
 
-Depending on the maturity of your code, refactoring might involve breaking some unit tests. If you are refactoring functions with unittests into classes, for example, then you are likely to break the unit tests. Fortunately when refactoring it is usually straightforward to update the tests to use the new code, and doing this helps validate that your choices of how you re-organised your code are good.
+Depending on the maturity of your code, refactoring might involve breaking some unit tests. If you are refactoring functions with unit tests into classes, for example, then you are likely to break the unit tests. Fortunately when refactoring it is usually straightforward to update the tests to use the new code, and doing this helps validate that your choices of how you re-organised your code are good.
 
 ## Refactoring Research Scripts
 
@@ -70,12 +72,12 @@ Often a research script or notebook looks something like the following:
 
 - get the data
 - clean the data up
-- the heart of the code: perform some analysis, train a model, do some inference, etc.
+- the heart of the code: perform some analysis, run a simulation, train a model, do some inference, etc.
 - report the results (plots, tables, save to a file)
 
 Sometimes the code may be a bit mixed up between the sections, for example it might report results and then do some more analysis, but it's usually possible to organise the code this way by simply moving the lines around.
 
-Scripts which are in this form is an easy target for a quick refactoring exercise that will dramatically improve the quality and re-usability of your code. You can, incrementally work through the following steps:
+Scripts which are in this form are an easy target for a quick refactoring exercise that will dramatically improve the quality and re-usability of your code. You can, incrementally work through the following steps:
 
 - create a *main function* and add *tests*
 - turn each of the sections described above into a library of *functions*

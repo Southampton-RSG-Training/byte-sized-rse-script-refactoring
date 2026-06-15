@@ -10,4 +10,7 @@ team members, and others.
 
 It assumes some familiarity with Python, as we will be using that as the
 language to demonstrate the process. Some familiarity with object-oriented
-progrmming in Python may be useful in the last section of the course.
+programming in Python may be useful in the last section of the course.
+
+In the byte-sized RSE sequence it would naturally come at some point after
+the lesson on unit testing.
