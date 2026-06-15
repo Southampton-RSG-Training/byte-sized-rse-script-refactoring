@@ -48,7 +48,7 @@ Refactoring typically involves tasks such as:
 - changing an algorithm or library used in a computation
 - writing tests for the new functions and classes
 
-Sometimes it can also involve re-arranging the choices made previously: perhaps the way that functions were grouped into a class previously wasn't quite right and some methods need to be removed and other ones added; or the classes themselves fundametally re-thought.
+Sometimes it can also involve revisiting the choices made previously: perhaps the way that functions were grouped into a class previously wasn't quite right and some methods need to be removed and other ones added; or the classes themselves fundametally re-thought.
 
 ## Refactoring Confidently
 

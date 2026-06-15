@@ -52,6 +52,9 @@ po/*~
 # renv sandbox needed for renv version 0.16.0
 renv/sandbox # OPTIONAL
 
+# Ignore mac .DS_Store
+.DS_Store
+
 # custom for the code in this repo
 __pycache__
 results.json
