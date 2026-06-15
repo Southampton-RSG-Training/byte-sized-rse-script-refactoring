@@ -85,7 +85,7 @@ Including it here has two purposes:
 - it signals to code formatters like Black that we want the arguments split over multiple lines when formatting; and more importantly
 - it provides a little bit of protection against errors when changing code.
 
-To explain the last point, consider if the comma was not there on the last line, and we decided we wanted to pass the `min_altitude` as well.  It's very easy to end up with code like:
+To explain the last point, consider if the comma was not there on the last line, and we decided we wanted to refactor to pass the `min_altitude` as well.  It's very easy to end up with code like:
 ``` python
 highland_coffee_report(
     filename="data/simplified_coffee_ratings.csv",
@@ -95,6 +95,8 @@ highland_coffee_report(
 )
 ```
 where we are missing a *required* comma after `"Colombia"`.  It's easy to fix, but annoying if you miss it and causes a syntax error when you run the code.  You can also easily get similar problems if you re-order the arguments.  Habitually including the comma at the end of each line makes the errors less likely.
+
+This sort of practice, where you write your code so that it is less likely to have errors when you work with it is sometimes called ["defensive programming."](https://en.wikipedia.org/wiki/Defensive_programming)
 
 :::::::::::::::::::::::::::::::::::::::::::::
 
