@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Byte-Sized RSE: Refactoring: All in One View</title>
+<title>Byte-Sized RSE: Script Refactoring: All in One View</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="../assets/styles.css">
 <script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><!-- NOTE: https://docs.mathjax.org/en/latest/output/mathml.html#mathml-support --><!-- Changes from V2 to V4: https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html
@@ -99,7 +99,7 @@
       <img class="small-logo" alt="Carpentries Incubator" src="../assets/images/incubator-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      Byte-Sized RSE: Refactoring
+      Byte-Sized RSE: Script Refactoring
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -110,7 +110,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            Byte-Sized RSE: Refactoring
+            Byte-Sized RSE: Script Refactoring
           </span>
         </li>
         <li class="nav-item">
@@ -353,7 +353,7 @@
 <hr>
 <p>Last updated on 2026-06-15 |
 
-        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/10-refactoring-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring/edit/main/episodes/10-refactoring-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -445,6 +445,7 @@ be</li>
 <li>grouping related code into re-usable libraries or modules</li>
 <li>grouping functions and data together into classes and objects</li>
 <li>changing an algorithm or library used in a computation</li>
+<li>writing tests for the new functions and classes</li>
 </ul>
 <p>Sometimes it can also involve re-arranging the choices made
 previously: perhaps the way that functions were grouped into a class
@@ -520,10 +521,10 @@ following steps:</p>
 </li>
 </ul>
 <p>At the end of each step you will have working code, validated by
-tests, which is easier to test, easier to modify and adapt in the
-future, and an improvement on what you had in terms of quality. Of
-course, you can always stop at the point which feels right for your use
-case.</p>
+regression tests. The code will be more modular, making it is easier to
+test, easier to modify and adapt in the future, and an improvement on
+what you had in terms of quality. Of course, you can always stop at the
+point which feels right for your use case.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -550,7 +551,7 @@ your plans for use</p></li>
 <hr>
 <p>Last updated on 2026-06-15 |
 
-        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/11-example-code-and-data.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring/edit/main/episodes/11-example-code-and-data.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 5 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -595,8 +596,8 @@ change our directory to the repository contents:</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="bu">cd</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">git</span> clone https://github.com/</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="bu">cd</span> refactoring-example</span></code></pre>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">git</span> clone https://github.com/Southampton-RSG-Training/byte-sized-rse-refactoring-example</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="bu">cd</span> byte-sized-rse-refactoring-example</span></code></pre>
 </div>
 <p>You can run the example code:</p>
 <div class="codewrapper sourceCode" id="cb2">
@@ -769,7 +770,7 @@ script.</p>
 <hr>
 <p>Last updated on 2026-06-15 |
 
-        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/12-refactoring-regression-test.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring/edit/main/episodes/12-refactoring-regression-test.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -1021,7 +1022,7 @@ screen and to the <code>results.json</code> file.</p>
   Checkpoint: Attendee Progress
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Who’s successfully created the new function and run the code?</p>
 </div>
@@ -1152,7 +1153,7 @@ behaviour.</p>
   Checkpoint: Attendee Progress
   </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>Who’s successfully managed to get the tests to pass?</p>
 </div>
@@ -1181,7 +1182,7 @@ further refactoring in confidence</p></li>
 <hr>
 <p>Last updated on 2026-06-15 |
 
-        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/13-refactoring-functions.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring/edit/main/episodes/13-refactoring-functions.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -1297,7 +1298,7 @@ subsequent steps run into problems.</p>
   Checkpoint: Attendee Progress
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Who’s successfully managed to refactor
 <code>read_coffee_data_csv</code> and get the test to pass?</p>
@@ -1392,7 +1393,7 @@ to pass additional parameters:</p>
   Checkpoint: Attendee Progress
   </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>Who’s successfully managed to refactor everything and get the test to
 pass?</p>
@@ -1483,7 +1484,7 @@ be re-used in the future for similar analysis</p></li>
 <hr>
 <p>Last updated on 2026-06-15 |
 
-        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/14-refactoring-classes.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring/edit/main/episodes/14-refactoring-classes.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -1496,8 +1497,10 @@ be re-used in the future for similar analysis</p></li>
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do you refactor script sections into functions?</li>
-<li>How do you identify inputs and outputs of the functions?</li>
+<li>How can you make it easier to work with functions that have similar
+signatures?</li>
+<li>How do you refactor collections of functions into classes?</li>
+<li>How do you the attributes and methods for a new class?</li>
 </ul>
 </div>
 </div>
@@ -1507,7 +1510,7 @@ be re-used in the future for similar analysis</p></li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Refactor the example code as a collection of functions.</li>
+<li>Refactor the example code as class.</li>
 <li>Create a new “main” block for the script.</li>
 </ul>
 </div>
@@ -1724,7 +1727,7 @@ class, and then repace function calls with method calls:</p>
   Checkpoint: Attendee Progress
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Who’s successfully managed to refactor everything and get the test to
 pass?</p>
@@ -1844,14 +1847,14 @@ unit tests for the refactored code</p></li>
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://example.com/template-source/lesson-example/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring/edit/main/README.md" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://example.com/template-source/lesson-example/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://example.com/template-source/lesson-example/" class="external-link">Source</a></p>
+        | <a href="https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring/" class="external-link">Source</a></p>
         <p>
-        <a href="https://example.com/template-source/lesson-example/blob/main/" class="external-link">Cite</a>
-        | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        <a href="https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring/blob/main/" class="external-link">Cite</a>
+        | <a href="mailto:C.J.Webster@soton.ac.uk">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 		</div>
 		<div class="col-md-6">
 
@@ -1871,15 +1874,15 @@ unit tests for the refactored code</p></li>
     {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "@id": "https://template-source.github.io/lesson-example/instructor/aio.html",
+  "@id": "https://Southampton-RSG-Training.github.io/byte-sized-rse-script-refactoring/instructor/aio.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
   "keywords": "refactoring, software, data, lesson, The Carpentries",
   "name": "All in One View",
   "creativeWorkStatus": "active",
-  "url": "https://template-source.github.io/lesson-example/instructor/aio.html",
-  "identifier": "https://template-source.github.io/lesson-example/instructor/aio.html",
+  "url": "https://Southampton-RSG-Training.github.io/byte-sized-rse-script-refactoring/instructor/aio.html",
+  "identifier": "https://Southampton-RSG-Training.github.io/byte-sized-rse-script-refactoring/instructor/aio.html",
   "dateCreated": "2026-05-19",
   "dateModified": "2026-06-15",
   "datePublished": "2026-06-15"

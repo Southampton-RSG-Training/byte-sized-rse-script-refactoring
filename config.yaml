@@ -17,7 +17,7 @@ carpentry: 'incubator'
 # carpentry_description: "Custom Carpentry"
 
 # Overall title for pages.
-title: 'Byte-Sized RSE: Refactoring'
+title: 'Byte-Sized RSE: Script Refactoring'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: '2026-05-19'
@@ -34,13 +34,13 @@ life_cycle: 'pre-alpha'
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://example.com/template-source/lesson-example'
+source: 'https://github.com/Southampton-RSG-Training/byte-sized-rse-script-refactoring'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org'
+contact: 'C.J.Webster@soton.ac.uk'
 
 # Navigation ------------------------------------------------
 #
