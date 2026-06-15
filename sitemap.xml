@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://template-source.github.io/lesson-example/10-refactoring-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/11-example-code-and-data.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/12-refactoring-regression-test.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/13-refactoring-functions.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/14-refactoring-classes.html</loc>
+  </url>
+  <url>
     <loc>https://template-source.github.io/lesson-example/404.html</loc>
   </url>
   <url>
@@ -10,10 +25,31 @@
     <loc>https://template-source.github.io/lesson-example/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://template-source.github.io/lesson-example/aio.html</loc>
+  </url>
+  <url>
     <loc>https://template-source.github.io/lesson-example/citation.html</loc>
   </url>
   <url>
+    <loc>https://template-source.github.io/lesson-example/images.html</loc>
+  </url>
+  <url>
     <loc>https://template-source.github.io/lesson-example/index.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/instructor/10-refactoring-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/instructor/11-example-code-and-data.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/instructor/12-refactoring-regression-test.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/instructor/13-refactoring-functions.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/instructor/14-refactoring-classes.html</loc>
   </url>
   <url>
     <loc>https://template-source.github.io/lesson-example/instructor/404.html</loc>
@@ -25,13 +61,25 @@
     <loc>https://template-source.github.io/lesson-example/instructor/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://template-source.github.io/lesson-example/instructor/aio.html</loc>
+  </url>
+  <url>
     <loc>https://template-source.github.io/lesson-example/instructor/citation.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/instructor/images.html</loc>
   </url>
   <url>
     <loc>https://template-source.github.io/lesson-example/instructor/index.html</loc>
   </url>
   <url>
+    <loc>https://template-source.github.io/lesson-example/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
     <loc>https://template-source.github.io/lesson-example/instructor/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/instructor/key-points.html</loc>
   </url>
   <url>
     <loc>https://template-source.github.io/lesson-example/instructor/profiles.html</loc>
@@ -40,7 +88,13 @@
     <loc>https://template-source.github.io/lesson-example/instructor/reference.html</loc>
   </url>
   <url>
+    <loc>https://template-source.github.io/lesson-example/instructor-notes.html</loc>
+  </url>
+  <url>
     <loc>https://template-source.github.io/lesson-example/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://template-source.github.io/lesson-example/key-points.html</loc>
   </url>
   <url>
     <loc>https://template-source.github.io/lesson-example/profiles.html</loc>

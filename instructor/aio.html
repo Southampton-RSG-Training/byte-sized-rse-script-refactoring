@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Lesson Title: All in One View</title>
+<title>Byte-Sized RSE: Refactoring: All in One View</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="../assets/styles.css">
 <script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><!-- NOTE: https://docs.mathjax.org/en/latest/output/mathml.html#mathml-support --><!-- Changes from V2 to V4: https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html
@@ -99,7 +99,7 @@
       <img class="small-logo" alt="Carpentries Incubator" src="../assets/images/incubator-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      Lesson Title
+      Byte-Sized RSE: Refactoring
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -110,7 +110,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            Lesson Title
+            Byte-Sized RSE: Refactoring
           </span>
         </li>
         <li class="nav-item">
@@ -237,7 +237,55 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. introduction</a>
+        <a href="10-refactoring-introduction.html">1. Introduction</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="11-example-code-and-data.html">2. Example Code</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="12-refactoring-regression-test.html">3. Creating a Main Function and Tests</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="13-refactoring-functions.html">4. Code Blocks to Functions</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="14-refactoring-classes.html">5. Functions to Classes</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -301,12 +349,12 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>All in One View</h1>
         
-<section id="aio-introduction"><p>Content from <a href="introduction.html">introduction</a></p>
+<section id="aio-10-refactoring-introduction"><p>Content from <a href="10-refactoring-introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2026-06-09 |
+<p>Last updated on 2026-06-15 |
 
-        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/10-refactoring-introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -318,8 +366,12 @@
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do you write a lesson using R Markdown and
-<a href="https://carpentries.github.io/sandpaper/" class="external-link">sandpaper</a>?</li>
+<li>What is refactoring?</li>
+<li>When should you refactor your code?</li>
+<li>How do you improve the structure of code without introducing
+bugs?</li>
+<li>What are the typical patterns of research scripts and notebooks that
+can be improved?</li>
 </ul>
 </div>
 </div>
@@ -329,140 +381,149 @@
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain how to use markdown with the new lesson template</li>
-<li>Demonstrate how to include pieces of code, figures, and nested
-challenge blocks</li>
+<li>Understand the basics of refactoring code.</li>
+<li>Recognise common structures of analysis scripts and notebooks.</li>
+<li>Identify these parts and turn them into re-usable functions.</li>
+<li>Identify patterns in functions and group them into classes and
+objects.</li>
+<li>Understand the importance of testing.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<section><h2 class="section-heading" id="why-refactor">Why Refactor?<a class="anchor" aria-label="anchor" href="#why-refactor"></a>
 </h2>
 <hr class="half-width">
-<p>This is a lesson created via The Carpentries Workbench. It is written
-in <a href="https://pandoc.org/MANUAL.html" class="external-link">Pandoc-flavored Markdown</a>
-for static files (with extension <code>.md</code>) and <a href="https://rmarkdown.rstudio.com/" class="external-link">R Markdown</a> for dynamic files
-that can render code into output (with extension <code>.Rmd</code>).
-Please refer to the <a href="https://carpentries.github.io/sandpaper-docs/" class="external-link">Introduction to The
-Carpentries Workbench</a> for full documentation.</p>
-<p>What you need to know is that there are three sections required for a
-valid Carpentries lesson template:</p>
-<ol style="list-style-type: decimal">
-<li>
-<code>questions</code> are displayed at the beginning of the episode
-to prime the learner for the content.</li>
-<li>
-<code>objectives</code> are the learning objectives for an episode
-displayed with the questions.</li>
-<li>
-<code>keypoints</code> are displayed at the end of the episode to
-reinforce the objectives.</li>
-</ol>
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
-<div class="accordion-body">
-<p>Inline instructor notes can help inform instructors of timing
-challenges associated with the lessons. They appear in the “Instructor
-View”</p>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-1-can-you-do-it" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?</h3>
-<div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Output </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within
-challenge blocks?</h3>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
-<div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="figures">Figures<a class="anchor" aria-label="anchor" href="#figures"></a>
+<p>“Refactoring” is a process where the internal structure of a program
+or piece of software is modified without changing the external or
+overall behaviour of the code. Internally the behaviour may change,
+sometimes dramatically, but users of the code should notice no change: a
+refactored function should take the same inputs and return the same
+outputs, for example.</p>
+<p>This in contrast with other coding activities, such as adding
+features and fixing bugs, where the goal is to change the behaviour:
+either to make the program more correct, or to add useful functionality.
+Refactoring is a much more internal and introspective part of software
+development, and can be hard to justify against the pressures of making
+code more useful, correct, and applicable in more situations. If no
+outward behaviour has changed, what is gained?</p>
+<p>The answer is that refactoring is <em>investment</em> in the code,
+which should more than repay itself in making ongoing development easier
+and faster. When code is grouped logically into modules focused on
+common concerns it becomes easier to add functionality and identify
+where problems occur; and perhaps more importantly it becomes easier to
+test at a granular level. It also becomes easier to share code, and for
+collaborators to understand what is happening in a program and why.</p>
+<p>But just as with any other investment you do need to think about
+whether you should spend the effort. Sometimes that effort is repaid
+immediately: a day spent refactoring before adding new features may
+repay itself by reducing the development by more than a day. But
+sometimes the return is less tangible: a script refactored into a
+library may be easier for other researchers to use, and so dramatically
+increase the <em>impact</em> of your work even if it doesn’t immediately
+pay-off in terms of effort to do further development.</p>
+</section><section><h2 class="section-heading" id="what-does-refactoring-involve">What Does Refactoring Involve?<a class="anchor" aria-label="anchor" href="#what-does-refactoring-involve"></a>
 </h2>
 <hr class="half-width">
-<p>You can include figures generated from R Markdown:</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pie</span><span class="op">(</span></span>
-<span>  <span class="fu">c</span><span class="op">(</span>Sky <span class="op">=</span> <span class="fl">78</span>, <span class="st">"Sunny side of pyramid"</span> <span class="op">=</span> <span class="fl">17</span>, <span class="st">"Shady side of pyramid"</span> <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, </span>
-<span>  init.angle <span class="op">=</span> <span class="fl">315</span>, </span>
-<span>  col <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="st">"deepskyblue"</span>, <span class="st">"yellow"</span>, <span class="st">"yellow3"</span><span class="op">)</span>, </span>
-<span>  border <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre>
-</div>
-<figure style="text-align: center"><img src="../fig/introduction-rendered-pyramid-1.png" alt="pie chart illusion of a pyramid" class="figure mx-auto d-block"><figcaption>
-Sun arise each and every morning
-</figcaption></figure><p>Or you can use pandoc markdown for static figures with the following
-syntax:</p>
-<p><code>![optional caption that appears below the figure](figure url){alt='alt text for accessibility purposes'}</code></p>
-<figure><img src="https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg" alt="Blue Carpentries hex person logo with no text." class="figure mx-auto d-block"><div class="figcaption">You belong in The Carpentries!</div>
-</figure></section><section><h2 class="section-heading" id="math">Math<a class="anchor" aria-label="anchor" href="#math"></a>
+<p>Refactoring typically involves tasks such as:</p>
+<ul>
+<li>thinking and analysing the structure of the code
+<ul>
+<li>what patterns do you see?</li>
+<li>how can you change them for the better?</li>
+</ul>
+</li>
+<li>grouping code thematically into functions, including
+<ul>
+<li>thinking about what the inputs and outputs of the functions should
+be</li>
+<li>restructuring code to call those functions</li>
+</ul>
+</li>
+<li>grouping related code into re-usable libraries or modules</li>
+<li>grouping functions and data together into classes and objects</li>
+<li>changing an algorithm or library used in a computation</li>
+</ul>
+<p>Sometimes it can also involve re-arranging the choices made
+previously: perhaps the way that functions were grouped into a class
+previously wasn’t quite right and some methods need to be removed and
+other ones added; or the classes themselves fundametally re-thought.</p>
+</section><section><h2 class="section-heading" id="refactoring-confidently">Refactoring Confidently<a class="anchor" aria-label="anchor" href="#refactoring-confidently"></a>
 </h2>
 <hr class="half-width">
-<p>One of our episodes contains <span class="math inline">\(\LaTeX\)</span> equations when describing how to
-create dynamic reports with {knitr}, so we now use mathjax to describe
-this:</p>
-<p><code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> becomes: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>Cool, right?</p>
+<p>Whenever you change code you run the risk of introducing bugs. Since
+refactoring involves changing code without changing behaviour to
+minimise bugs you need to have holistic tests of the code that you are
+changing: these are typically called <em>regression tests</em>, but may
+take the form of system tests, integration tests or unit tests,
+depending on the level at which you are refactoring within a
+codebase.</p>
+<ul>
+<li>before refactoring ensure that you have a way of testing your
+code</li>
+<li>the tests should be easy to run (ideally just one command) and fast
+(seconds is better than minutes)</li>
+<li>run your tests after completing every change to ensure that you
+haven’t broken anything</li>
+<li>fix any errors or bugs you have introduced before moving onto the
+next step</li>
+</ul>
+<p>The key is that if you introduce a bug or error into your code it
+should <em>fail fast</em> allowing you to immediately see that there is
+a problem: you do not want to be many steps into a refactor and realize
+that you introduced a subtle bug early on that will require significant
+work to fix.</p>
+<p>Research scripts and notebooks may not be in a state where they are
+ready to have formal tests written for them: in this case it is often
+enough to have a small validation input dataset and a corresponding set
+of correct outputs that can easily be checked manually. The key is that
+these should be fast to run and easy to validate.</p>
+<p>Depending on the maturity of your code, refactoring might involve
+breaking some unit tests. If you are refactoring functions with unit
+tests into classes, for example, then you are likely to break the unit
+tests. Fortunately when refactoring it is usually straightforward to
+update the tests to use the new code, and doing this helps validate that
+your choices of how you re-organised your code are good.</p>
+</section><section><h2 class="section-heading" id="refactoring-research-scripts">Refactoring Research Scripts<a class="anchor" aria-label="anchor" href="#refactoring-research-scripts"></a>
+</h2>
+<hr class="half-width">
+<p>Often when working on new ideas you end up with a script or a
+notebook that does an analysis that you want, and does it correctly. In
+some cases that is good enough: it works, it’s replicable, and you don’t
+need to extend it. And that’s fine.</p>
+<p>Often a research script or notebook looks something like the
+following:</p>
+<ul>
+<li>get the data</li>
+<li>clean the data up</li>
+<li>the heart of the code: perform some analysis, run a simulation,
+train a model, do some inference, etc.</li>
+<li>report the results (plots, tables, save to a file)</li>
+</ul>
+<p>Sometimes the code may be a bit mixed up between the sections, for
+example it might report results and then do some more analysis, but it’s
+usually possible to organise the code this way by simply moving the
+lines around.</p>
+<p>Scripts which are in this form are an easy target for a quick
+refactoring exercise that will dramatically improve the quality and
+re-usability of your code. You can, incrementally work through the
+following steps:</p>
+<ul>
+<li>create a <em>main function</em> and add <em>tests</em>
+</li>
+<li>turn each of the sections described above into a library of
+<em>functions</em>
+</li>
+<li>turn groups of functions into <em>classes</em>
+</li>
+</ul>
+<p>At the end of each step you will have working code, validated by
+tests, which is easier to test, easier to modify and adapt in the
+future, and an improvement on what you had in terms of quality. Of
+course, you can always stop at the point which feels right for your use
+case.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -471,22 +532,1305 @@ this:</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li><p>refactoring is changing code without changing the inputs and
+outputs</p></li>
+<li><p>refactoring involves thinking about the structure of your code
+and how you could make it better</p></li>
+<li><p>having regression tests allows you to be sure that you don’t
+introduce bugs when refactoring</p></li>
+<li><p>research scripts often have a common structure which makes them
+easy to refactor</p></li>
+<li><p>you should refactor code only as much as makes sense based on
+your plans for use</p></li>
 </ul>
 </div>
 </div>
 </div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
+</section></section><section id="aio-11-example-code-and-data"><p>Content from <a href="11-example-code-and-data.html">Example Code</a></p>
+<hr>
+<p>Last updated on 2026-06-15 |
+
+        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/11-example-code-and-data.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 5 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What does a typical research script look like?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Obtain and run example code used for this lesson.</li>
+<li>Examine and identify the sections of the code.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="example-code">Example Code<a class="anchor" aria-label="anchor" href="#example-code"></a>
+</h2>
+<hr class="half-width">
+<p>For this lesson we’ll be using some example code available on GitHub,
+which we’ll clone onto our machines using the Bash shell.</p>
+<p>So firstly open a Bash shell (via Git Bash in Windows or Terminal on
+a Mac). Then, on the command line, navigate to where you’d like the
+example code to reside, and use Git to clone it.</p>
+<p>For example, to clone the repository in our home directory, and
+change our directory to the repository contents:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="bu">cd</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="fu">git</span> clone https://github.com/</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="bu">cd</span> refactoring-example</span></code></pre>
+</div>
+<p>You can run the example code:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">python3</span> coffee_analysis.py</span></code></pre>
+</div>
+<p>which will print out a table of data and create a new JSON file.</p>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
+  Checkpoint: Attendee Progress
+  </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div class="accordion-body">
+<p>Who’s successfully managed to get the code to run?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Now let’s take a look at the code:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="im">from</span> csv <span class="im">import</span> DictReader</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a><span class="im">import</span> re</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a><span class="im">from</span> operator <span class="im">import</span> itemgetter</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a><span class="im">import</span> json</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a>filename <span class="op">=</span> <span class="st">"data/simplified_coffee_ratings.csv"</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a>country <span class="op">=</span> <span class="st">"Colombia"</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a>min_altitude <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a>digits <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r"</span><span class="dv">\d</span><span class="op">+</span><span class="vs">"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a>feet_suffixes <span class="op">=</span> {<span class="st">"'"</span>, <span class="st">"f"</span>, <span class="st">"ft"</span>, <span class="st">"feet"</span>}</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1" aria-label="code-block-3-13"></a>ratings <span class="op">=</span> [</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1" aria-label="code-block-3-14"></a>    <span class="st">"aroma"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1" aria-label="code-block-3-15"></a>    <span class="st">"flavor"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1" aria-label="code-block-3-16"></a>    <span class="st">"aftertaste"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1" aria-label="code-block-3-17"></a>    <span class="st">"acidity"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1" aria-label="code-block-3-18"></a>    <span class="st">"body"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1" aria-label="code-block-3-19"></a>    <span class="st">"balance"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1" aria-label="code-block-3-20"></a>    <span class="st">"uniformity"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1" aria-label="code-block-3-21"></a>    <span class="st">"clean_cup"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1" aria-label="code-block-3-22"></a>    <span class="st">"sweetness"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1" aria-label="code-block-3-23"></a>    <span class="st">"cupper_points"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1" aria-label="code-block-3-24"></a>    <span class="st">"moisture"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1" aria-label="code-block-3-25"></a>]</span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1" aria-label="code-block-3-26"></a></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1" aria-label="code-block-3-27"></a>output_filename <span class="op">=</span> <span class="st">"results.json"</span></span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1" aria-label="code-block-3-28"></a></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1" aria-label="code-block-3-29"></a></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1" aria-label="code-block-3-30"></a><span class="kw">def</span> extract_altitudes(sample):</span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1" aria-label="code-block-3-31"></a>    <span class="co">"""Clean up altitude data, adding min and max altitude data."""</span></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1" aria-label="code-block-3-32"></a>    altitude <span class="op">=</span> sample[<span class="st">"altitude"</span>]</span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1" aria-label="code-block-3-33"></a></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1" aria-label="code-block-3-34"></a>    <span class="co"># - some altitudes give a range</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1" aria-label="code-block-3-35"></a>    numbers <span class="op">=</span> [<span class="bu">int</span>(value) <span class="cf">for</span> value <span class="kw">in</span> re.findall(digits, altitude)]</span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1" aria-label="code-block-3-36"></a></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1" aria-label="code-block-3-37"></a>    <span class="co"># - some altitudes are given in feet</span></span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1" aria-label="code-block-3-38"></a>    <span class="cf">if</span> <span class="bu">any</span>(altitude.endswith(suffix) <span class="cf">for</span> suffix <span class="kw">in</span> feet_suffixes):</span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1" aria-label="code-block-3-39"></a>        numbers <span class="op">=</span> [<span class="bu">int</span>(<span class="bu">round</span>(x <span class="op">*</span> <span class="dv">12</span> <span class="op">*</span> <span class="fl">2.54</span> <span class="op">/</span> <span class="dv">100</span>, <span class="op">-</span><span class="dv">1</span>)) <span class="cf">for</span> x <span class="kw">in</span> numbers]</span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1" aria-label="code-block-3-40"></a></span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1" aria-label="code-block-3-41"></a>    <span class="co"># - add new columns for min and max altitude</span></span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1" aria-label="code-block-3-42"></a>    <span class="cf">if</span> <span class="bu">len</span>(numbers) <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1" aria-label="code-block-3-43"></a>        sample[<span class="st">"min_altitude"</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1" aria-label="code-block-3-44"></a>        sample[<span class="st">"max_altitude"</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1" aria-label="code-block-3-45"></a>    <span class="cf">else</span>:</span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1" aria-label="code-block-3-46"></a>        sample[<span class="st">"min_altitude"</span>] <span class="op">=</span> <span class="bu">min</span>(numbers)</span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1" aria-label="code-block-3-47"></a>        sample[<span class="st">"max_altitude"</span>] <span class="op">=</span> <span class="bu">max</span>(numbers)</span>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1" aria-label="code-block-3-48"></a></span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1" aria-label="code-block-3-49"></a></span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1" aria-label="code-block-3-50"></a><span class="co"># read the data from the file</span></span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1" aria-label="code-block-3-51"></a><span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> f:</span>
+<span id="cb3-52"><a href="#cb3-52" tabindex="-1" aria-label="code-block-3-52"></a>    reader <span class="op">=</span> DictReader(f)</span>
+<span id="cb3-53"><a href="#cb3-53" tabindex="-1" aria-label="code-block-3-53"></a>    coffee_data <span class="op">=</span> <span class="bu">list</span>(reader)</span>
+<span id="cb3-54"><a href="#cb3-54" tabindex="-1" aria-label="code-block-3-54"></a></span>
+<span id="cb3-55"><a href="#cb3-55" tabindex="-1" aria-label="code-block-3-55"></a></span>
+<span id="cb3-56"><a href="#cb3-56" tabindex="-1" aria-label="code-block-3-56"></a><span class="co"># clean up the data</span></span>
+<span id="cb3-57"><a href="#cb3-57" tabindex="-1" aria-label="code-block-3-57"></a><span class="cf">for</span> sample <span class="kw">in</span> coffee_data:</span>
+<span id="cb3-58"><a href="#cb3-58" tabindex="-1" aria-label="code-block-3-58"></a>    <span class="co"># 1. Strip whitespace</span></span>
+<span id="cb3-59"><a href="#cb3-59" tabindex="-1" aria-label="code-block-3-59"></a>    <span class="cf">for</span> column, value <span class="kw">in</span> sample.items():</span>
+<span id="cb3-60"><a href="#cb3-60" tabindex="-1" aria-label="code-block-3-60"></a>        sample[column] <span class="op">=</span> value.strip()</span>
+<span id="cb3-61"><a href="#cb3-61" tabindex="-1" aria-label="code-block-3-61"></a></span>
+<span id="cb3-62"><a href="#cb3-62" tabindex="-1" aria-label="code-block-3-62"></a>    <span class="co"># 2. Convert ratings to floats</span></span>
+<span id="cb3-63"><a href="#cb3-63" tabindex="-1" aria-label="code-block-3-63"></a>    <span class="cf">for</span> column <span class="kw">in</span> ratings:</span>
+<span id="cb3-64"><a href="#cb3-64" tabindex="-1" aria-label="code-block-3-64"></a>        sample[column] <span class="op">=</span> <span class="bu">float</span>(sample[column])</span>
+<span id="cb3-65"><a href="#cb3-65" tabindex="-1" aria-label="code-block-3-65"></a></span>
+<span id="cb3-66"><a href="#cb3-66" tabindex="-1" aria-label="code-block-3-66"></a>    <span class="co"># 3. Get altitude information</span></span>
+<span id="cb3-67"><a href="#cb3-67" tabindex="-1" aria-label="code-block-3-67"></a>    extract_altitudes(sample)</span>
+<span id="cb3-68"><a href="#cb3-68" tabindex="-1" aria-label="code-block-3-68"></a></span>
+<span id="cb3-69"><a href="#cb3-69" tabindex="-1" aria-label="code-block-3-69"></a>    <span class="co"># 4. replace missing values with ""</span></span>
+<span id="cb3-70"><a href="#cb3-70" tabindex="-1" aria-label="code-block-3-70"></a>    <span class="cf">for</span> column, value <span class="kw">in</span> sample.items():</span>
+<span id="cb3-71"><a href="#cb3-71" tabindex="-1" aria-label="code-block-3-71"></a>        <span class="cf">if</span> value <span class="kw">in</span> {<span class="st">"NA"</span>, <span class="st">"-"</span>}:</span>
+<span id="cb3-72"><a href="#cb3-72" tabindex="-1" aria-label="code-block-3-72"></a>            sample[column] <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb3-73"><a href="#cb3-73" tabindex="-1" aria-label="code-block-3-73"></a></span>
+<span id="cb3-74"><a href="#cb3-74" tabindex="-1" aria-label="code-block-3-74"></a></span>
+<span id="cb3-75"><a href="#cb3-75" tabindex="-1" aria-label="code-block-3-75"></a><span class="co"># find the Colombian highland coffee</span></span>
+<span id="cb3-76"><a href="#cb3-76" tabindex="-1" aria-label="code-block-3-76"></a>result_data <span class="op">=</span> <span class="bu">sorted</span>(</span>
+<span id="cb3-77"><a href="#cb3-77" tabindex="-1" aria-label="code-block-3-77"></a>    (</span>
+<span id="cb3-78"><a href="#cb3-78" tabindex="-1" aria-label="code-block-3-78"></a>        sample</span>
+<span id="cb3-79"><a href="#cb3-79" tabindex="-1" aria-label="code-block-3-79"></a>        <span class="cf">for</span> sample <span class="kw">in</span> coffee_data</span>
+<span id="cb3-80"><a href="#cb3-80" tabindex="-1" aria-label="code-block-3-80"></a>        <span class="cf">if</span> (</span>
+<span id="cb3-81"><a href="#cb3-81" tabindex="-1" aria-label="code-block-3-81"></a>            sample[<span class="st">"country_of_origin"</span>] <span class="op">==</span> country</span>
+<span id="cb3-82"><a href="#cb3-82" tabindex="-1" aria-label="code-block-3-82"></a>            <span class="kw">and</span> sample[<span class="st">"min_altitude"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb3-83"><a href="#cb3-83" tabindex="-1" aria-label="code-block-3-83"></a>            <span class="kw">and</span> sample[<span class="st">"min_altitude"</span>] <span class="op">&gt;=</span> min_altitude</span>
+<span id="cb3-84"><a href="#cb3-84" tabindex="-1" aria-label="code-block-3-84"></a>        )</span>
+<span id="cb3-85"><a href="#cb3-85" tabindex="-1" aria-label="code-block-3-85"></a>    ),</span>
+<span id="cb3-86"><a href="#cb3-86" tabindex="-1" aria-label="code-block-3-86"></a>    key<span class="op">=</span>itemgetter(<span class="st">"flavor"</span>, <span class="st">"cupper_points"</span>),</span>
+<span id="cb3-87"><a href="#cb3-87" tabindex="-1" aria-label="code-block-3-87"></a>    reverse<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-88"><a href="#cb3-88" tabindex="-1" aria-label="code-block-3-88"></a>)</span>
+<span id="cb3-89"><a href="#cb3-89" tabindex="-1" aria-label="code-block-3-89"></a></span>
+<span id="cb3-90"><a href="#cb3-90" tabindex="-1" aria-label="code-block-3-90"></a><span class="co"># Report results to the terminal</span></span>
+<span id="cb3-91"><a href="#cb3-91" tabindex="-1" aria-label="code-block-3-91"></a><span class="cf">for</span> sample <span class="kw">in</span> result_data:</span>
+<span id="cb3-92"><a href="#cb3-92" tabindex="-1" aria-label="code-block-3-92"></a>    <span class="bu">print</span>(</span>
+<span id="cb3-93"><a href="#cb3-93" tabindex="-1" aria-label="code-block-3-93"></a>        <span class="st">"</span><span class="sc">{source:62s}</span><span class="st"> </span><span class="sc">{min_altitude:&gt;5d}</span><span class="st"> </span><span class="sc">{flavor:&gt;5.2f}</span><span class="st"> </span><span class="sc">{cupper_points:&gt;5.2f}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
+<span id="cb3-94"><a href="#cb3-94" tabindex="-1" aria-label="code-block-3-94"></a>            source<span class="op">=</span>sample[<span class="st">"owner"</span>] <span class="op">+</span> <span class="st">", "</span> <span class="op">+</span> sample[<span class="st">"farm_name"</span>], <span class="op">**</span>sample</span>
+<span id="cb3-95"><a href="#cb3-95" tabindex="-1" aria-label="code-block-3-95"></a>        )</span>
+<span id="cb3-96"><a href="#cb3-96" tabindex="-1" aria-label="code-block-3-96"></a>    )</span>
+<span id="cb3-97"><a href="#cb3-97" tabindex="-1" aria-label="code-block-3-97"></a></span>
+<span id="cb3-98"><a href="#cb3-98" tabindex="-1" aria-label="code-block-3-98"></a><span class="co"># Export result data</span></span>
+<span id="cb3-99"><a href="#cb3-99" tabindex="-1" aria-label="code-block-3-99"></a><span class="cf">with</span> <span class="bu">open</span>(output_filename, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb3-100"><a href="#cb3-100" tabindex="-1" aria-label="code-block-3-100"></a>    json.dump(result_data, f)</span></code></pre>
+</div>
+<p>This is a script that follows the structure described in the
+introduction:</p>
+<ul>
+<li>it reads in some data from a CSV file</li>
+<li>performs some clean-up:
+<ul>
+<li>turning strings into numbers</li>
+<li>untangling altitude data</li>
+<li>handling missing values</li>
+</ul>
+</li>
+<li>performs a simple analysis:
+<ul>
+<li>filters and sorts a subset of the data</li>
+</ul>
+</li>
+<li>outputs the results:
+<ul>
+<li>prints to the screen in a tabular format</li>
+<li>writes to a JSON file</li>
+</ul>
+</li>
+</ul>
+<p>There is one function that handles a moderately complex set of steps
+to handle different types of altitude data (feet vs. metres, and ranges
+of values vs single values), but other than that this is a simple linear
+script.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>research scripts often follow a common simple structure</li>
+</ul>
+</div>
+</div>
+</div>
+</section></section><section id="aio-12-refactoring-regression-test"><p>Content from <a href="12-refactoring-regression-test.html">Creating a Main Function and Tests</a></p>
+<hr>
+<p>Last updated on 2026-06-15 |
+
+        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/12-refactoring-regression-test.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do you get started turning a script into a library?</li>
+<li>How do you test that you changes haven’t introduced bugs?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Create a main function.</li>
+<li>Add a test for the main function.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="create-a-main-function">Create a Main Function<a class="anchor" aria-label="anchor" href="#create-a-main-function"></a>
+</h2>
+<hr class="half-width">
+<p>The first and simplest step you can do towards making a research
+script re-usable is to wrap it up in a single function. This can be as
+simple as wrapping the entire script in a <code>def main():</code> and
+then adding an <code>if __name__ == '__main__':</code> that calls the
+function. However, with a little thought, you can make your script a
+simple function that takes parameters that make it more re-usable.</p>
+<p>When we look at the example code, we see that we have the following
+constants in the script:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a>filename <span class="op">=</span> <span class="st">"data/simplified_coffee_ratings.csv"</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a>country <span class="op">=</span> <span class="st">"Colombia"</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>min_altitude <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a>digits <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r"</span><span class="dv">\d</span><span class="op">+</span><span class="vs">"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a>feet_suffixes <span class="op">=</span> {<span class="st">"'"</span>, <span class="st">"f"</span>, <span class="st">"ft"</span>, <span class="st">"feet"</span>}</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1" aria-label="code-block-1-8"></a>ratings <span class="op">=</span> [...]</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1" aria-label="code-block-1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1" aria-label="code-block-1-10"></a>output_filename <span class="op">=</span> <span class="st">"results.json"</span></span></code></pre>
+</div>
+<p>Of these the <code>digits</code>, <code>feet_suffixes</code> and
+<code>ratings</code> constants are things which are likely to remain
+unchanged, but it is easy to imagine that you might want to run the
+analysis with different input and output files, and possibly on
+different countries and minimum altitudes.</p>
+<p>So we keep the <code>digits</code>, <code>feet_suffixes</code> and
+<code>ratings</code> as module-level constants, but the
+<code>filename</code>, <code>output_filename</code>,
+<code>country</code> and <code>min_altitude</code> variables make good
+candidates for the parameters of the main function. The minimum altitude
+is less likely to change, so it makes sense to give that a default
+value.</p>
+<p>To create the new function we add the function declaration and
+docstring after the constant declarations but before the code that reads
+in the file:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="kw">def</span> highland_coffee_report(filename, output_filename, country, min_altitude<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>    <span class="co">"""Produce a report on coffee suppliers from highland regions."""</span></span></code></pre>
+</div>
+<p>Then we can indent all of the following code. Most editors and IDEs
+have a way to do this easily: often by selecting the code you want to
+indent and pressing the “tab” key.</p>
+<p>The code after this change won’t do anything if it is run. We need to
+add some code that calls the function with the appropriate arguments. In
+Python it makes sense to have this code inside an
+<code>if __name__ == "__main__":</code> block at the end of the
+file:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>    highland_coffee_report(</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>        filename<span class="op">=</span><span class="st">"data/simplified_coffee_ratings.csv"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a>        output_filename<span class="op">=</span><span class="st">"results.json"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a>        country<span class="op">=</span><span class="st">"Colombia"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a>    )</span></code></pre>
+</div>
+<div id="what-is-if-__name__-__main__" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="what-is-if-__name__-__main__" class="callout-inner">
+<h3 class="callout-title">What is
+<code>if __name__ == '__main__':</code>?</h3>
+<div class="callout-content">
+<p>When Python runs a script or imports a module, it creates a number of
+special module-level global variables that give information about the
+context that the code is being run in. These include
+<code>__name__</code> which is the name of the module,
+<code>__file__</code> which is the path where the code is located, and
+so on (all of them have the double underscore or “dunder” which
+indicates that they are treated specially by Python).</p>
+<p>When Python is run on a <code>.py</code> file, the module’s
+<code>__name__</code> is set to the string value
+<code>"__main__"</code>, however if the same file is <em>imported</em>
+then the <code>__name__</code> is the name of the file without the
+<code>.py</code>. So code inside an
+<code>if __name__ == "__main__":</code> block is only run when the file
+is the main script and not when it is imported. This is a good place to
+put code that does work as opposed to code that defines things: doing
+this means your script becomes a cleanly importable library.</p>
+</div>
+</div>
+</div>
+<div id="trailing-commas-and-defensive-programming" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="trailing-commas-and-defensive-programming" class="callout-inner">
+<h3 class="callout-title">Trailing Commas and Defensive Programming</h3>
+<div class="callout-content">
+<p>In our call of the main function:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>highland_coffee_report(</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a>    filename<span class="op">=</span><span class="st">"data/simplified_coffee_ratings.csv"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a>    output_filename<span class="op">=</span><span class="st">"results.json"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a>    country<span class="op">=</span><span class="st">"Colombia"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a>)</span></code></pre>
+</div>
+<p>you might have noticed the trailing comma on the last line. Unlike
+some languages, it is is syntactically legal to have a trailing comma in
+most contexts in Python, it is simply ignored.</p>
+<p>Including it here has two purposes:</p>
+<ul>
+<li>it signals to code formatters like Black that we want the arguments
+split over multiple lines when formatting; and more importantly</li>
+<li>it provides a little bit of protection against errors when changing
+code.</li>
+</ul>
+<p>To explain the last point, consider if the comma was not there on the
+last line, and we decided we wanted to refactor to pass the
+<code>min_altitude</code> as well. It’s very easy to end up with code
+like:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a>highland_coffee_report(</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a>    filename<span class="op">=</span><span class="st">"data/simplified_coffee_ratings.csv"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a>    output_filename<span class="op">=</span><span class="st">"results.json"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a>    country<span class="op">=</span><span class="st">"Colombia"</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a>    min_altitude<span class="op">=</span><span class="dv">1250</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a>)</span></code></pre>
+</div>
+<p>where we are missing a <em>required</em> comma after
+<code>"Colombia"</code>. It’s easy to fix, but annoying if you miss it
+and causes a syntax error when you run the code. You can also easily get
+similar problems if you re-order the arguments. Habitually including the
+comma at the end of each line makes the errors less likely.</p>
+<p>This sort of practice, where you write your code so that it is less
+likely to have errors when you work with it is sometimes called <a href="https://en.wikipedia.org/wiki/Defensive_programming" class="external-link">“defensive
+programming.”</a></p>
+</div>
+</div>
+</div>
+<p>After all this, our new function and the code that calls it looks
+like:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="kw">def</span> highland_coffee_report(filename, output_filename, country, min_altitude<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>    <span class="co">"""Produce a report on coffee suppliers from highland regions."""</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>    <span class="co"># read the data from the file</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> f:</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a>        reader <span class="op">=</span> DictReader(f)</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1" aria-label="code-block-6-6"></a>        coffee_data <span class="op">=</span> <span class="bu">list</span>(reader)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1" aria-label="code-block-6-8"></a>    <span class="co"># clean up the data</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1" aria-label="code-block-6-9"></a>    <span class="cf">for</span> sample <span class="kw">in</span> coffee_data:</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1" aria-label="code-block-6-10"></a>        <span class="co"># 1. Strip whitespace</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1" aria-label="code-block-6-11"></a>        <span class="cf">for</span> column, value <span class="kw">in</span> sample.items():</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1" aria-label="code-block-6-12"></a>            sample[column] <span class="op">=</span> value.strip()</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1" aria-label="code-block-6-13"></a></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1" aria-label="code-block-6-14"></a>        <span class="co"># 2. Convert ratings to floats</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1" aria-label="code-block-6-15"></a>        <span class="cf">for</span> column <span class="kw">in</span> ratings:</span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1" aria-label="code-block-6-16"></a>            sample[column] <span class="op">=</span> <span class="bu">float</span>(sample[column])</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1" aria-label="code-block-6-17"></a></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1" aria-label="code-block-6-18"></a>        <span class="co"># 3. Get altitude information</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1" aria-label="code-block-6-19"></a>        extract_altitudes(sample)</span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1" aria-label="code-block-6-20"></a></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1" aria-label="code-block-6-21"></a>        <span class="co"># 4. replace missing values with ""</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1" aria-label="code-block-6-22"></a>        <span class="cf">for</span> column, value <span class="kw">in</span> sample.items():</span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1" aria-label="code-block-6-23"></a>            <span class="cf">if</span> value <span class="kw">in</span> {<span class="st">"NA"</span>, <span class="st">"-"</span>}:</span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1" aria-label="code-block-6-24"></a>                sample[column] <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1" aria-label="code-block-6-25"></a></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1" aria-label="code-block-6-26"></a>    <span class="co"># find the Colombian highland coffee</span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1" aria-label="code-block-6-27"></a>    result_data <span class="op">=</span> <span class="bu">sorted</span>(</span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1" aria-label="code-block-6-28"></a>        (</span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1" aria-label="code-block-6-29"></a>            sample</span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1" aria-label="code-block-6-30"></a>            <span class="cf">for</span> sample <span class="kw">in</span> coffee_data</span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1" aria-label="code-block-6-31"></a>            <span class="cf">if</span> (</span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1" aria-label="code-block-6-32"></a>                sample[<span class="st">"country_of_origin"</span>] <span class="op">==</span> country</span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1" aria-label="code-block-6-33"></a>                <span class="kw">and</span> sample[<span class="st">"min_altitude"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1" aria-label="code-block-6-34"></a>                <span class="kw">and</span> sample[<span class="st">"min_altitude"</span>] <span class="op">&gt;=</span> min_altitude</span>
+<span id="cb6-35"><a href="#cb6-35" tabindex="-1" aria-label="code-block-6-35"></a>            )</span>
+<span id="cb6-36"><a href="#cb6-36" tabindex="-1" aria-label="code-block-6-36"></a>        ),</span>
+<span id="cb6-37"><a href="#cb6-37" tabindex="-1" aria-label="code-block-6-37"></a>        key<span class="op">=</span>itemgetter(<span class="st">"flavor"</span>, <span class="st">"cupper_points"</span>),</span>
+<span id="cb6-38"><a href="#cb6-38" tabindex="-1" aria-label="code-block-6-38"></a>        reverse<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-39"><a href="#cb6-39" tabindex="-1" aria-label="code-block-6-39"></a>    )</span>
+<span id="cb6-40"><a href="#cb6-40" tabindex="-1" aria-label="code-block-6-40"></a></span>
+<span id="cb6-41"><a href="#cb6-41" tabindex="-1" aria-label="code-block-6-41"></a>    <span class="co"># Report results to the terminal</span></span>
+<span id="cb6-42"><a href="#cb6-42" tabindex="-1" aria-label="code-block-6-42"></a>    <span class="cf">for</span> sample <span class="kw">in</span> result_data:</span>
+<span id="cb6-43"><a href="#cb6-43" tabindex="-1" aria-label="code-block-6-43"></a>        <span class="bu">print</span>(</span>
+<span id="cb6-44"><a href="#cb6-44" tabindex="-1" aria-label="code-block-6-44"></a>            <span class="st">"</span><span class="sc">{source:62s}</span><span class="st"> </span><span class="sc">{min_altitude:&gt;5d}</span><span class="st"> </span><span class="sc">{flavor:&gt;5.2f}</span><span class="st"> </span><span class="sc">{cupper_points:&gt;5.2f}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
+<span id="cb6-45"><a href="#cb6-45" tabindex="-1" aria-label="code-block-6-45"></a>                source<span class="op">=</span>sample[<span class="st">"owner"</span>] <span class="op">+</span> <span class="st">", "</span> <span class="op">+</span> sample[<span class="st">"farm_name"</span>], <span class="op">**</span>sample</span>
+<span id="cb6-46"><a href="#cb6-46" tabindex="-1" aria-label="code-block-6-46"></a>            )</span>
+<span id="cb6-47"><a href="#cb6-47" tabindex="-1" aria-label="code-block-6-47"></a>        )</span>
+<span id="cb6-48"><a href="#cb6-48" tabindex="-1" aria-label="code-block-6-48"></a></span>
+<span id="cb6-49"><a href="#cb6-49" tabindex="-1" aria-label="code-block-6-49"></a>    <span class="co"># Export result data</span></span>
+<span id="cb6-50"><a href="#cb6-50" tabindex="-1" aria-label="code-block-6-50"></a>    <span class="cf">with</span> <span class="bu">open</span>(output_filename, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-51"><a href="#cb6-51" tabindex="-1" aria-label="code-block-6-51"></a>        json.dump(result_data, f)</span>
+<span id="cb6-52"><a href="#cb6-52" tabindex="-1" aria-label="code-block-6-52"></a></span>
+<span id="cb6-53"><a href="#cb6-53" tabindex="-1" aria-label="code-block-6-53"></a></span>
+<span id="cb6-54"><a href="#cb6-54" tabindex="-1" aria-label="code-block-6-54"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb6-55"><a href="#cb6-55" tabindex="-1" aria-label="code-block-6-55"></a>    highland_coffee_report(</span>
+<span id="cb6-56"><a href="#cb6-56" tabindex="-1" aria-label="code-block-6-56"></a>        filename<span class="op">=</span><span class="st">"data/simplified_coffee_ratings.csv"</span>,</span>
+<span id="cb6-57"><a href="#cb6-57" tabindex="-1" aria-label="code-block-6-57"></a>        output_filename<span class="op">=</span><span class="st">"results.json"</span>,</span>
+<span id="cb6-58"><a href="#cb6-58" tabindex="-1" aria-label="code-block-6-58"></a>        country<span class="op">=</span><span class="st">"Colombia"</span>,</span>
+<span id="cb6-59"><a href="#cb6-59" tabindex="-1" aria-label="code-block-6-59"></a>    )</span></code></pre>
+</div>
+<p>When we run it, it should produce exactly the same output to the
+screen and to the <code>results.json</code> file.</p>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
+  Checkpoint: Attendee Progress
+  </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div class="accordion-body">
+<p>Who’s successfully created the new function and run the code?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Once you have confirmed that your change is good, this could be a
+good place to commit your changes with Git. By doing this you lock-in
+the progress you have made, and can always revert to this point if
+subsequent steps run into problems.</p>
+<div class="section level3">
+<h3 id="what-weve-gained">What We’ve Gained<a class="anchor" aria-label="anchor" href="#what-weve-gained"></a>
+</h3>
+<p>From this one simple change, our script has become a simple library.
+We can now import the code from other scripts, or interactively, to
+re-use it:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="im">from</span> highland_coffee_analysis <span class="im">import</span> highland_coffee_report</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a>highland_coffee_report(</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a>    filename<span class="op">=</span><span class="st">"data/simplified_coffee_ratings.csv"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a>    output_filename<span class="op">=</span><span class="st">"ecuador_results.json"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a>    country<span class="op">=</span><span class="st">"Ecuador"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1" aria-label="code-block-7-7"></a>)</span></code></pre>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="writing-tests">Writing Tests<a class="anchor" aria-label="anchor" href="#writing-tests"></a>
+</h2>
+<hr class="half-width">
+<p>We can be reasonably confident that this change hasn’t broken the
+functionality of the script, since we haven’t changed any of the core
+analysis, but our only way of testing this to run the new version of the
+script and compare the output with what the old version produced.</p>
+<p>But by creating a function, we’ve gained a hook that allows us to
+write some regression tests. Regression tests are tests which are
+designed to ensure that desired behaviour of your code is not changed by
+any changes you make while developing. However, at this stage the tests
+aren’t as simple as we might like: these are at the level of <em>system
+tests</em> rather than <em>unit tests</em>, and so they have to deal
+with things like opening and closing of files, inspecting terminal
+output, and disposing of files once the test is done.</p>
+<p>In the sample code we have already written a test for this
+function:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="im">from</span> contextlib <span class="im">import</span> redirect_stdout</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="im">import</span> io</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a><span class="im">from</span> tempfile <span class="im">import</span> TemporaryDirectory</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a><span class="im">import</span> unittest</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a><span class="im">from</span> highland_coffee_analysis <span class="im">import</span> highland_coffee_report</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a><span class="co"># Where to look for test input and result data</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a>TEST_DIR <span class="op">=</span> Path(<span class="va">__file__</span>).parent <span class="op">/</span> <span class="st">"test_data"</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1" aria-label="code-block-8-14"></a><span class="kw">class</span> TestHighlandCoffeeAnalysis(unittest.TestCase):</span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1" aria-label="code-block-8-15"></a></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1" aria-label="code-block-8-16"></a>    <span class="kw">def</span> test_highland_coffee_report(<span class="va">self</span>):</span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1" aria-label="code-block-8-17"></a>        <span class="co"># Path to input data</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1" aria-label="code-block-8-18"></a>        input_file <span class="op">=</span> TEST_DIR <span class="op">/</span> <span class="st">"test_coffee_ratings.csv"</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1" aria-label="code-block-8-19"></a></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1" aria-label="code-block-8-20"></a>        <span class="co"># Comparison stdout and JSON values.</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1" aria-label="code-block-8-21"></a>        <span class="cf">with</span> <span class="bu">open</span>(TEST_DIR <span class="op">/</span> <span class="st">"test_stdout.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1" aria-label="code-block-8-22"></a>            comparison_stdout <span class="op">=</span> f.read()</span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1" aria-label="code-block-8-23"></a>        <span class="cf">with</span> <span class="bu">open</span>(TEST_DIR <span class="op">/</span> <span class="st">"test_output.json"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1" aria-label="code-block-8-24"></a>            comparison_json <span class="op">=</span> json.load(f)</span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1" aria-label="code-block-8-25"></a></span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1" aria-label="code-block-8-26"></a>        <span class="cf">with</span> TemporaryDirectory() <span class="im">as</span> tmp_dir:</span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1" aria-label="code-block-8-27"></a>            output_file <span class="op">=</span> Path(tmp_dir) <span class="op">/</span> <span class="st">"results.json"</span></span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1" aria-label="code-block-8-28"></a></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1" aria-label="code-block-8-29"></a>            <span class="co"># Run the report function, but capture stdout</span></span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1" aria-label="code-block-8-30"></a>            out <span class="op">=</span> io.StringIO()</span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1" aria-label="code-block-8-31"></a>            <span class="cf">with</span> redirect_stdout(out):</span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1" aria-label="code-block-8-32"></a>                highland_coffee_report(input_file, output_file)</span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1" aria-label="code-block-8-33"></a></span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1" aria-label="code-block-8-34"></a>            <span class="co"># Test that the output is what we expect</span></span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1" aria-label="code-block-8-35"></a>            <span class="va">self</span>.assertEqual(out.getvalue(), comparison_stdout)</span>
+<span id="cb8-36"><a href="#cb8-36" tabindex="-1" aria-label="code-block-8-36"></a>            </span>
+<span id="cb8-37"><a href="#cb8-37" tabindex="-1" aria-label="code-block-8-37"></a>            <span class="co"># Test the JSON output matches when read back in</span></span>
+<span id="cb8-38"><a href="#cb8-38" tabindex="-1" aria-label="code-block-8-38"></a>            <span class="cf">with</span> <span class="bu">open</span>(output_file) <span class="im">as</span> f:</span>
+<span id="cb8-39"><a href="#cb8-39" tabindex="-1" aria-label="code-block-8-39"></a>                result_json <span class="op">=</span> json.load(f)</span>
+<span id="cb8-40"><a href="#cb8-40" tabindex="-1" aria-label="code-block-8-40"></a>            </span>
+<span id="cb8-41"><a href="#cb8-41" tabindex="-1" aria-label="code-block-8-41"></a>            <span class="va">self</span>.assertEqual(result_json, comparison_json)</span></code></pre>
+</div>
+<div id="temporary-directories-and-mocking-standard-output" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="temporary-directories-and-mocking-standard-output" class="callout-inner">
+<h3 class="callout-title">Temporary directories and mocking standard
+output</h3>
+<div class="callout-content">
+<p>This is a bit more complex than some tests you may have seen, but it
+demonstrates two important techniques for testing the output of research
+scripts:</p>
+<ul>
+<li><p>using a <code>TemporaryDirectory</code> to create a contained
+directory for output files which is automatically deleted when it is
+done (even if there is an error or test failure).</p></li>
+<li><p>redirecting standard output using a <code>StringIO</code> as a
+<em>mock</em> together with <code>redirect_stdout</code>, so that you
+can validate what is printed to the terminal.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<p>We can run the test code using:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">python3</span> <span class="at">-m</span> unittest tests/test_highland_coffee_analysis.py</span></code></pre>
+</div>
+<p>We can do this after every change we make, and build confidence that
+out refactoring hasn’t introduced any new bugs or unexpected
+behaviour.</p>
+<div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
+  <h3 class="accordion-header" id="headingInstructor2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
+  Checkpoint: Attendee Progress
+  </h3>
+</button>
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div class="accordion-body">
+<p>Who’s successfully managed to get the tests to pass?</p>
+</div>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li><p>a simple refactor which brings immediate benefits is to create a
+function that includes the whole script</p></li>
+<li><p>choosing appropriate parameters allows the function to be
+re-usable in other situations</p></li>
+<li><p>a regression test can be written for the function that allows
+further refactoring in confidence</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section></section><section id="aio-13-refactoring-functions"><p>Content from <a href="13-refactoring-functions.html">Code Blocks to Functions</a></p>
+<hr>
+<p>Last updated on 2026-06-15 |
+
+        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/13-refactoring-functions.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do you refactor script sections into functions?</li>
+<li>How do you identify inputs and outputs of the functions?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Refactor the example code as a collection of functions.</li>
+<li>Create a new “main” block for the script.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="code-blocks-to-functions">Code Blocks to Functions<a class="anchor" aria-label="anchor" href="#code-blocks-to-functions"></a>
+</h2>
+<hr class="half-width">
+<p>Each of the sections sections discussed in the previous section is a
+natural grouping to take a block and turn it into a function. This is
+usually a fairly mechanical process:</p>
+<ul>
+<li>put the function structure around the code block (eg.
+<code>def</code> keyword, indent the block, add docstring)</li>
+<li>work out the inputs and outputs if any</li>
+<li>change the main function</li>
+</ul>
+<div class="section level3">
+<h3 id="refactoring-a-code-section">Refactoring a Code Section<a class="anchor" aria-label="anchor" href="#refactoring-a-code-section"></a>
+</h3>
+<p>Consider the first block of code that reads the data into a list of
+dictionaries:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="co"># read the data from the file</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> f:</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a>    reader <span class="op">=</span> DictReader(f)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a>    coffee_data <span class="op">=</span> <span class="bu">list</span>(reader)</span></code></pre>
+</div>
+<p>We start converting it into a function by copying it, indenting and
+adding a <code>def</code> line and turning the comment into a
+docstring:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="kw">def</span> read_coffee_data_csv():</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a>    <span class="co">"""Read the data from the file."""</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> f:</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>        reader <span class="op">=</span> DictReader(f)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1" aria-label="code-block-2-5"></a>        coffee_data <span class="op">=</span> <span class="bu">list</span>(reader)</span></code></pre>
+</div>
+<p>Now we need to determine what the parameters and return values should
+be. We definitely need to return the coffee data as the result of the
+function, and it probably makes sense to have the filename as an
+argument.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="kw">def</span> read_coffee_data_csv(filename):</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a>    <span class="co">"""Read the data from the file."""</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>    <span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> f:</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a>        reader <span class="op">=</span> DictReader(f)</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a>        coffee_data <span class="op">=</span> <span class="bu">list</span>(reader)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a>    <span class="cf">return</span> coffee_data</span></code></pre>
+</div>
+<p>At this point we need to add in a line to call the new function with
+the correct parameters in the place where the code was originally:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a>coffee_data <span class="op">=</span> read_coffee_data_csv(filename)</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="testing-and-committing-your-changes">Testing and Committing Your Changes<a class="anchor" aria-label="anchor" href="#testing-and-committing-your-changes"></a>
+</h3>
+<p>We have now refactored the CSV reading code, but we shouldn’t have
+changed the behaviour. We can verify this by running the test code
+using:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">python</span> <span class="at">-m</span> unittest tests/test_highland_coffee_analysis.py</span></code></pre>
+</div>
+<p>The tests should still pass; if they don’t you have a bug which needs
+to be fixed before continuing.</p>
+<p>Once you have confirmed that your change is good, this could be a
+good place to commit your changes with Git. By doing this you lock-in
+the progress you have made, and can always revert to this point if
+subsequent steps run into problems.</p>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
+  Checkpoint: Attendee Progress
+  </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div class="accordion-body">
+<p>Who’s successfully managed to refactor
+<code>read_coffee_data_csv</code> and get the test to pass?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="continued-refactoring">Continued Refactoring<a class="anchor" aria-label="anchor" href="#continued-refactoring"></a>
+</h3>
+<p>We continue with each section of the code, creating functions:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="kw">def</span> clean_coffee_data(coffee_data):</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a>    <span class="co">"""Clean up a coffee dataset."""</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a>    <span class="cf">for</span> sample <span class="kw">in</span> coffee_data:</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a>        <span class="co"># 1. Strip whitespace</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a>        <span class="cf">for</span> column, value <span class="kw">in</span> sample.items():</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1" aria-label="code-block-6-6"></a>            sample[column] <span class="op">=</span> value.strip()</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1" aria-label="code-block-6-8"></a>        <span class="co"># 2. Convert measurements to floats</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1" aria-label="code-block-6-9"></a>        <span class="cf">for</span> column <span class="kw">in</span> ratings:</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1" aria-label="code-block-6-10"></a>            sample[column] <span class="op">=</span> <span class="bu">float</span>(sample[column])</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1" aria-label="code-block-6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1" aria-label="code-block-6-12"></a>        <span class="co"># 3. get altitude data</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1" aria-label="code-block-6-13"></a>        extract_altitudes(sample)</span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1" aria-label="code-block-6-14"></a></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1" aria-label="code-block-6-15"></a>        <span class="co"># 4. replace missing values with ""</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1" aria-label="code-block-6-16"></a>        <span class="cf">for</span> column, value <span class="kw">in</span> sample.items():</span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1" aria-label="code-block-6-17"></a>            <span class="cf">if</span> value <span class="kw">in</span> {<span class="st">"NA"</span>, <span class="st">"-"</span>}:</span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1" aria-label="code-block-6-18"></a>                sample[column] <span class="op">=</span> <span class="st">""</span></span></code></pre>
+</div>
+<p>For the analysis step the parameters should definitely include the
+coffee data, but the code will be more useful if we also allow the user
+to pass additional parameters:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="kw">def</span> find_coffee(coffee_data, country, min_altitude):</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>    <span class="co">"""Find data from a country over a certain altitude."""</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a>    <span class="cf">return</span> <span class="bu">sorted</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a>        (</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a>            sample</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a>            <span class="cf">for</span> sample <span class="kw">in</span> coffee_data</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1" aria-label="code-block-7-7"></a>            <span class="cf">if</span> (</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1" aria-label="code-block-7-8"></a>                sample[<span class="st">"country_of_origin"</span>] <span class="op">==</span> country</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1" aria-label="code-block-7-9"></a>                <span class="kw">and</span> sample[<span class="st">"min_altitude"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1" aria-label="code-block-7-10"></a>                <span class="kw">and</span> sample[<span class="st">"min_altitude"</span>] <span class="op">&gt;=</span> min_altitude</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1" aria-label="code-block-7-11"></a>            )</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1" aria-label="code-block-7-12"></a>        ),</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1" aria-label="code-block-7-13"></a>        key<span class="op">=</span>itemgetter(<span class="st">"flavor"</span>, <span class="st">"cupper_points"</span>),</span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1" aria-label="code-block-7-14"></a>        reverse<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1" aria-label="code-block-7-15"></a>    )</span></code></pre>
+</div>
+<p>The output functions are fairly straightforward:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="kw">def</span> print_report(coffee_data):</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a>    <span class="co">"""Print a report on a dataset to the terminal."""</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>    <span class="cf">for</span> sample <span class="kw">in</span> coffee_data:</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a>        <span class="bu">print</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1" aria-label="code-block-8-5"></a>            <span class="st">"</span><span class="sc">{source:62s}</span><span class="st"> </span><span class="sc">{min_altitude:&gt;5d}</span><span class="st"> </span><span class="sc">{flavor:&gt;5.2f}</span><span class="st"> </span><span class="sc">{cupper_points:&gt;5.2f}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1" aria-label="code-block-8-6"></a>                source<span class="op">=</span>sample[<span class="st">"owner"</span>] <span class="op">+</span> <span class="st">", "</span> <span class="op">+</span> sample[<span class="st">"farm_name"</span>], <span class="op">**</span>sample</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1" aria-label="code-block-8-7"></a>            )</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1" aria-label="code-block-8-8"></a>        )</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1" aria-label="code-block-8-9"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1" aria-label="code-block-8-10"></a></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1" aria-label="code-block-8-11"></a><span class="kw">def</span> write_coffee_data_json(coffee_data, path):</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1" aria-label="code-block-8-12"></a>    <span class="co">"""Export coffee data to JSON."""</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1" aria-label="code-block-8-13"></a>    <span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1" aria-label="code-block-8-14"></a>        json.dump(coffee_data, f)</span></code></pre>
+</div>
+<p>The main function should now look like:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="kw">def</span> highland_coffee_report(filename, output_filename, country, min_altitude):</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>    coffee_data <span class="op">=</span> read_coffee_data_csv(filename)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a>    clean_coffee_data(coffee_data)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a>    results <span class="op">=</span> find_coffee(coffee_data, country, min_altitude)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1" aria-label="code-block-9-5"></a>    print_report(results)</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1" aria-label="code-block-9-6"></a>    write_coffee_data_json(results, output_filename)</span></code></pre>
+</div>
+<div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
+  <h3 class="accordion-header" id="headingInstructor2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
+  Checkpoint: Attendee Progress
+  </h3>
+</button>
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div class="accordion-body">
+<p>Who’s successfully managed to refactor everything and get the test to
+pass?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="what-weve-gained">What We’ve Gained<a class="anchor" aria-label="anchor" href="#what-weve-gained"></a>
+</h3>
+<p>We now have a small library of utility functions which may be useful
+for interactive exploration or to build other scripts. For example, if
+we wanted to read in the data and find all the coffee harvested in 2014,
+we could do something like:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="im">from</span> highland_coffee_analysis <span class="im">import</span> coffee_data, clean_coffee_data, print_report</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>coffee_data <span class="op">=</span> read_coffee_data_csv(<span class="st">"data/simplified_coffee_ratings.csv"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>clean_coffee_data(coffee_data)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a>coffee_data_2014 <span class="op">=</span> [</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1" aria-label="code-block-10-7"></a>    sample <span class="cf">for</span> sample <span class="kw">in</span> coffee_data <span class="cf">if</span> sample[<span class="st">"harvest_year"</span>] <span class="op">==</span> <span class="st">"2014"</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1" aria-label="code-block-10-8"></a>]</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1" aria-label="code-block-10-9"></a>print_report(coffee_data_2014)</span></code></pre>
+</div>
+<div id="what-about-pandas" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="what-about-pandas" class="callout-inner">
+<h3 class="callout-title">What About Pandas?</h3>
+<div class="callout-content">
+<p>If you are familiar with the Pandas library, one question you might
+have is why not just use Pandas DataFrames to perform the analysis
+instead of going and creating our own. For this particular example, the
+answer is that it <em>would</em> make a lot of sense, but we’re doing it
+this way to illustrate a general principle that works in lots of other
+cases.</p>
+<p>But even if we were to use Pandas (or any other third-party library
+that is replacing code you’ve written), a lot of the advice we’ve seen
+so far remains: write high-level regression tests, re-write your code,
+and run the regression tests to make sure nothing important has
+changed.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="testing">Testing<a class="anchor" aria-label="anchor" href="#testing"></a>
+</h2>
+<hr class="half-width">
+<p>As you create each new function, run the tests to make sure that you
+haven’t introduced any errors:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">python</span> <span class="at">-m</span> unittest tests/test_highland_coffee_analysis.py</span></code></pre>
+</div>
+<p>It may be tempting to write unit tests for each of these new
+functions, and if you are going to stop at this point in the refactoring
+it <em>would</em> make sense to do this. However, if you are going to go
+further and create classes in the way that we talk about in the next
+section, it’s probably wise to wait.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li><p>code that corresponds to common research code sections are
+natural things to turn into functions</p></li>
+<li><p>you need to think about what the inputs and outputs of your new
+functions should be</p></li>
+<li><p>when you have created each new function the regression tests
+should still pass</p></li>
+<li><p>this sort of refactoring creates a library of functions that can
+be re-used in the future for similar analysis</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section></section><section id="aio-14-refactoring-classes"><p>Content from <a href="14-refactoring-classes.html">Functions to Classes</a></p>
+<hr>
+<p>Last updated on 2026-06-15 |
+
+        <a href="https://example.com/template-source/lesson-example/edit/main/episodes/14-refactoring-classes.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do you refactor script sections into functions?</li>
+<li>How do you identify inputs and outputs of the functions?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Refactor the example code as a collection of functions.</li>
+<li>Create a new “main” block for the script.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="functions-to-classes">Functions to Classes<a class="anchor" aria-label="anchor" href="#functions-to-classes"></a>
+</h2>
+<hr class="half-width">
+<p>Often you’ll notice patterns of functions which take the same
+parameter or similar related parameters. For example, most of the
+functions we have written take a <code>coffee_data</code> variable which
+is a list of sample dictionaries:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="kw">def</span> clean_coffee_data(coffee_data): ...</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="kw">def</span> find_coffee(coffee_data, country, min_altitude): ...</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1" aria-label="code-block-1-5"></a><span class="kw">def</span> print_report(coffee_data): ...</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1" aria-label="code-block-1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1" aria-label="code-block-1-7"></a><span class="kw">def</span> write_coffee_data_json(coffee_data, path): ...</span></code></pre>
+</div>
+<p>In this case we have just one shared parameter, but it is common to
+have more than one. When we see patterns like this, it’s a good sign
+that object-oriented programming may be an appropriate approach.</p>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>The goal of object-oriented programming (OOP) is to improve code
+legibility and re-usability by combining information about data
+structures alongside the code that operates on those data structures.
+There’s a lot of computer science theory which goes along with that
+(encapsulation, inhertance, polymorphism, SOLID principles, and so on),
+but from the pragmatic point of view for research code, writing classes
+can make your code easier to use by reducing the cognitive load on your
+users (including “future you”).</p>
+<p>A deeper dive into OOP is outside the scope of this class, and we’re
+going to assume a basic level of familiarity with Python’s OOP features.
+If you haven’t seen them before, this is a fairly simple example of a
+class, so hopefully you will be able to follow along.</p>
+</div>
+</div>
+</div>
+<p>In cases like what we see here, the common parameters will become
+attributes of the class and the functions become methods.</p>
+<div class="section level3">
+<h3 id="creating-a-class">Creating a Class<a class="anchor" aria-label="anchor" href="#creating-a-class"></a>
+</h3>
+<p>This transformation is again, fairly mechanical. First we create the
+structure of the class with an <code>__init__</code> method as is
+standard in Python. An <code>__init__</code> method initializes the
+class by taking the common parameters and assigning them as
+attributes:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="kw">class</span> CoffeeData:</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, coffee_data):</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1" aria-label="code-block-2-4"></a>        <span class="va">self</span>.coffee_data <span class="op">=</span> <span class="bu">list</span>(coffee_data)</span></code></pre>
+</div>
+<p>We can then take each of our target functions and transform them into
+methods. The common parameters are replaced by <code>self</code> in the
+function signature, and then in the body of the method they are replaced
+by the attribute on self (so in our example, <code>coffee_data</code>
+becomes <code>self.coffee_data</code>):</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1" aria-label="code-block-3-1"></a><span class="kw">class</span> CoffeeData:</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1" aria-label="code-block-3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1" aria-label="code-block-3-3"></a>    ...</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1" aria-label="code-block-3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1" aria-label="code-block-3-5"></a>    <span class="kw">def</span> print_report(<span class="va">self</span>):</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1" aria-label="code-block-3-6"></a>        <span class="co">"""Print a report on a dataset to the terminal."""</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1" aria-label="code-block-3-7"></a>        <span class="cf">for</span> sample <span class="kw">in</span> <span class="va">self</span>.coffee_data:</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1" aria-label="code-block-3-8"></a>            <span class="bu">print</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1" aria-label="code-block-3-9"></a>                <span class="st">"</span><span class="sc">{source:62s}</span><span class="st"> </span><span class="sc">{min_altitude:&gt;5d}</span><span class="st"> </span><span class="sc">{flavor:&gt;5.2f}</span><span class="st"> </span><span class="sc">{cupper_points:&gt;5.2f}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1" aria-label="code-block-3-10"></a>                    source<span class="op">=</span>sample[<span class="st">"owner"</span>] <span class="op">+</span> <span class="st">", "</span> <span class="op">+</span> sample[<span class="st">"farm_name"</span>], <span class="op">**</span>sample</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1" aria-label="code-block-3-11"></a>                )</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1" aria-label="code-block-3-12"></a>            )</span></code></pre>
+</div>
+<p>The <code>find_coffee</code> function is a little bit more complex:
+not only does it take some additonal arguments, but it should create and
+return a new <code>CoffeeData</code> instance with the results of the
+analysis:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="kw">class</span> CoffeeData:</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a>    ...</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1" aria-label="code-block-4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1" aria-label="code-block-4-5"></a>    <span class="kw">def</span> find_coffee(<span class="va">self</span>, country, min_altitude):</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1" aria-label="code-block-4-6"></a>        <span class="co">"""Find data from a country over a certain altitude."""</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1" aria-label="code-block-4-7"></a>        coffee_data_list <span class="op">=</span> <span class="bu">sorted</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1" aria-label="code-block-4-8"></a>            (</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1" aria-label="code-block-4-9"></a>                sample</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1" aria-label="code-block-4-10"></a>                <span class="cf">for</span> sample <span class="kw">in</span> <span class="va">self</span>.coffee_data</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1" aria-label="code-block-4-11"></a>                <span class="cf">if</span> (</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1" aria-label="code-block-4-12"></a>                    sample[<span class="st">"country_of_origin"</span>] <span class="op">==</span> country</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1" aria-label="code-block-4-13"></a>                    <span class="kw">and</span> sample[<span class="st">"min_altitude"</span>] <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1" aria-label="code-block-4-14"></a>                    <span class="kw">and</span> sample[<span class="st">"min_altitude"</span>] <span class="op">&gt;=</span> min_altitude</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1" aria-label="code-block-4-15"></a>                )</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1" aria-label="code-block-4-16"></a>            ),</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1" aria-label="code-block-4-17"></a>            key<span class="op">=</span>itemgetter(<span class="st">"flavor"</span>, <span class="st">"cupper_points"</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1" aria-label="code-block-4-18"></a>            reverse<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1" aria-label="code-block-4-19"></a>        )</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1" aria-label="code-block-4-20"></a>        <span class="cf">return</span> CoffeeData(coffee_data_list)</span></code></pre>
+</div>
+<p>We can also refactor the <code>read_coffee_data_csv</code> file to be
+a <em>class method</em>. This is a useful Python idiom for providing
+alternative constructors for a class:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="kw">class</span> CoffeeData:</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a>    ...</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1" aria-label="code-block-5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1" aria-label="code-block-5-4"></a>    <span class="at">@classmethod</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1" aria-label="code-block-5-5"></a>    <span class="kw">def</span> read_csv(cls, filename):</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1" aria-label="code-block-5-6"></a>        <span class="cf">with</span> <span class="bu">open</span>(filename) <span class="im">as</span> f:</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1" aria-label="code-block-5-7"></a>            reader <span class="op">=</span> DictReader(f)</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1" aria-label="code-block-5-8"></a>            coffee_data <span class="op">=</span> cls(reader)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1" aria-label="code-block-5-9"></a>        <span class="cf">return</span> coffee_data</span></code></pre>
+</div>
+<div id="decorators" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="decorators" class="callout-inner">
+<h3 class="callout-title">Decorators</h3>
+<div class="callout-content">
+<p>In Python, unlike some languages, functions are themselves objects
+and can be used as arguments and return values to other functions. A
+function that takes a function as an input and transforms it somehow is
+called a “decorator”. For example, this decorator takes a function and
+wraps it in code to time it:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="im">import</span> time</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="kw">def</span> time_function(fn):</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1" aria-label="code-block-6-4"></a>    <span class="kw">def</span> timer(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1" aria-label="code-block-6-5"></a>        t <span class="op">=</span> time.perf_counter()</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1" aria-label="code-block-6-6"></a>        result <span class="op">=</span> fn(<span class="op">*</span>args, <span class="op">**</span>kwargs)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1" aria-label="code-block-6-7"></a>        <span class="bu">print</span>(<span class="ss">f"Time for </span><span class="sc">{</span>fn<span class="sc">}</span><span class="ss">:"</span>, time.perf_counter() <span class="op">-</span> t)</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1" aria-label="code-block-6-8"></a>        <span class="cf">return</span> result</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1" aria-label="code-block-6-9"></a>    <span class="cf">return</span> timer</span></code></pre>
+</div>
+<p>You could use this something like:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="kw">def</span> slow_function(n):</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1" aria-label="code-block-7-2"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1" aria-label="code-block-7-3"></a>        time.sleep(<span class="fl">0.1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1" aria-label="code-block-7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1" aria-label="code-block-7-5"></a>timed_slow_function <span class="op">=</span> time_function(slow_function)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1" aria-label="code-block-7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1" aria-label="code-block-7-7"></a>timed_slow_function(<span class="dv">10</span>)</span></code></pre>
+</div>
+<p>Which should print out that it took about a second to run.</p>
+<p>Python has a special <code>@</code> syntax for decorators that you
+always want applied to a function:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="at">@time_function</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="kw">def</span> slow_function(n):</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1" aria-label="code-block-8-4"></a>        time.sleep(<span class="fl">0.1</span>)</span></code></pre>
+</div>
+<p>which is equivalent to writing
+<code>slow_function = time_function(slow_function)</code>.</p>
+<p>Python provides some built-in decorators like
+<code>@classmethod</code>, <code>@staticmethod</code> and
+<code>@property</code> that classes recognise and will change the
+behaviour of methods that are decorated with them. The
+<code>@classmethod</code> decorator tells Python to call the method with
+the <em>class</em> as the first argument (usually denated as
+<code>cls</code>) instead of the <em>instance</em> (usually denoted as
+<code>self</code>), giving similar behaviour to class methods in
+languages like C++, C# and Java.</p>
+</div>
+</div>
+</div>
+<p>Finally, in our main function, we need to create the instance of the
+class, and then repace function calls with method calls:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="kw">def</span> highland_coffee_report(filename, output_filename, country, min_altitude):</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1" aria-label="code-block-9-2"></a>    coffee_data <span class="op">=</span> CoffeeData.read_csv(filename)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1" aria-label="code-block-9-3"></a>    coffee_data.clean_data()</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1" aria-label="code-block-9-4"></a>    results <span class="op">=</span> coffee_data.find_coffee(country, min_altitude)</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1" aria-label="code-block-9-5"></a>    results.print_report()</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1" aria-label="code-block-9-6"></a>    results.write_coffee_data_json(output_filename)</span></code></pre>
+</div>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
+  Checkpoint: Attendee Progress
+  </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div class="accordion-body">
+<p>Who’s successfully managed to refactor everything and get the test to
+pass?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="what-weve-gained">What we’ve gained<a class="anchor" aria-label="anchor" href="#what-weve-gained"></a>
+</h2>
+<hr class="half-width">
+<p>We now have a single object that encapsulates the data that we want
+to work with, which can simplify and improve the readability of our
+code, and make it easier to work with interactively.</p>
+<p>Taking the example from the previous section, if we wanted to read in
+the data and find all the coffee harvested in 2014, we could do
+something like:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="im">from</span> highland_coffee_analysis <span class="im">import</span> CoffeeData</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1" aria-label="code-block-10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1" aria-label="code-block-10-3"></a>coffee_data <span class="op">=</span> CoffeeData.read_csv(<span class="st">"data/simplified_coffee_ratings.csv"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1" aria-label="code-block-10-4"></a>coffee_data.clean_data()</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1" aria-label="code-block-10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1" aria-label="code-block-10-6"></a>coffee_data_2014 <span class="op">=</span> CoffeeData(</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1" aria-label="code-block-10-7"></a>    sample <span class="cf">for</span> sample <span class="kw">in</span> coffee_data.coffee_data <span class="cf">if</span> sample[<span class="st">"harvest_year"</span>] <span class="op">==</span> <span class="st">"2014"</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1" aria-label="code-block-10-8"></a>)</span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1" aria-label="code-block-10-9"></a>coffee_data_2014.print_report()</span></code></pre>
+</div>
+<p>Compared to the function version, we’ve simplified the imports and
+the method calls</p>
+<div id="alternative-approaches-and-extensions" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="alternative-approaches-and-extensions" class="callout-inner">
+<h3 class="callout-title">Alternative Approaches and Extensions</h3>
+<div class="callout-content">
+<p>There are some choices here that we could make differently, such as
+perhaps calling <code>clean_data</code> as part of
+<code>read_csv</code>. These sorts of decisions depend on external
+factors such as whether we get data in other formats (such as Excel
+spreadsheets) which need similar cleaning, or whether sometimes we get
+csv files which <em>don’t</em> need cleaning.</p>
+<p>Similarly, if you are experienced with Python OOP, there are some
+additional tweaks that you can add to make the class even easier to use,
+such as making it a <a href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" class="external-link"><code>Sequence</code></a>
+which allows you to use it in <code>for</code> loops and to index into
+it like a list or tuple:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="im">from</span> collections.abc <span class="im">import</span> Sequence</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1" aria-label="code-block-11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1" aria-label="code-block-11-3"></a><span class="kw">class</span> CoffeeData(Sequence):</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1" aria-label="code-block-11-4"></a>    ...</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1" aria-label="code-block-11-5"></a></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1" aria-label="code-block-11-6"></a>    <span class="kw">def</span> <span class="fu">__len__</span>(<span class="va">self</span>):</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1" aria-label="code-block-11-7"></a>        <span class="cf">return</span> <span class="bu">len</span>(<span class="va">self</span>.coffee_data)</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1" aria-label="code-block-11-8"></a>    </span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1" aria-label="code-block-11-9"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1" aria-label="code-block-11-10"></a>        <span class="cf">return</span> <span class="bu">iter</span>(<span class="va">self</span>.coffee_data)</span></code></pre>
+</div>
+<p>One thing to keep in mind is that software is very plastic: if it
+turns out you made the wrong choice it’s easy to re-write to make a
+better choice later once you have more experience with the problems and
+use-cases.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="testing">Testing<a class="anchor" aria-label="anchor" href="#testing"></a>
+</h2>
+<hr class="half-width">
+<p>Again, our top-level regression test should still work perfectly: we
+haven’t changed <em>what</em> the code does, just <em>how</em> it does
+it.</p>
+<p>This is a logical end-point in refactoring, so now would be a good
+time to write unit tests for the class and each of the methods to gain
+confidence that the code is behaving as expected when there are
+corner-cases.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li><p>objects and classes encapsulate data and the functions that
+operate on the data together</p></li>
+<li><p>functions with common parameters are natural targets to become
+methods on a class and the parameters become attributes</p></li>
+<li><p>input processing functions may make good class methods in
+Python</p></li>
+<li><p>classes are often easier for users to use as they reduce the
+number of imports and the complexity of function calls</p></li>
+<li><p>when you have created the class the regression tests should still
+pass</p></li>
+<li><p>when you have finished refactoring it is a good idea to write
+unit tests for the refactored code</p></li>
+</ul>
+</div>
+</div>
+</div>
 </section></section>
 </div>
     </main>
@@ -506,7 +1850,7 @@ any links that you are not going to use.
         | <a href="https://example.com/template-source/lesson-example/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://example.com/template-source/lesson-example/" class="external-link">Source</a></p>
         <p>
-        <a href="../citation.html">Cite</a>
+        <a href="https://example.com/template-source/lesson-example/blob/main/" class="external-link">Cite</a>
         | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 		</div>
 		<div class="col-md-6">
@@ -531,14 +1875,14 @@ any links that you are not going to use.
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "software, data, lesson, The Carpentries",
+  "keywords": "refactoring, software, data, lesson, The Carpentries",
   "name": "All in One View",
   "creativeWorkStatus": "active",
   "url": "https://template-source.github.io/lesson-example/instructor/aio.html",
   "identifier": "https://template-source.github.io/lesson-example/instructor/aio.html",
   "dateCreated": "2026-05-19",
-  "dateModified": "2026-06-09",
-  "datePublished": "2026-06-09"
+  "dateModified": "2026-06-15",
+  "datePublished": "2026-06-15"
 }
 
   </script><script>
