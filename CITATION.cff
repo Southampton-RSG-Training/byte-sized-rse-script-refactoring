@@ -5,7 +5,7 @@
 # ensuring that the author list and other fields remain accurate.
 
 cff-version: 1.2.0
-title: Byte-Sized Refactoring
+title: "Byte-Sized RSE: Refactoring"
 message: >-
   Please cite this lesson using the information in this file
   when you refer to it in publications, and/or if you
@@ -15,7 +15,7 @@ type: dataset
 authors:
   - given-names: Corran
     family-names: Webster
-    orcid: 0009-0004-1527-8379
+    orcid: https://orcid.org/0009-0004-1527-8379
 abstract: >-
   This intermediate-level class presents a workflow for taking
   research scripts and turning them into a re-usable library of
